@@ -217,67 +217,67 @@ Fluent Flyouts provides customized Windows system/media flyouts.
 # Repository Structure
 
 ```text
-WINDOWS-LIQUID-GLASS-THEME/
-│
-├── .gitignore
-├── LICENSE
-├── credits.md
-├── README.md
-├── THIRD-PARTY-NOTICES.md
-│
-├── assets/
-│   ├── fonts/
-│   │   └── JetBrainsMonoNerdFontPropo-Regular.ttf
-│   ├── previews/
-│   │   ├── desktop.png
-│   │   ├── file-explorer.png
-│   │   ├── navigation-pannel.png
-│   │   ├── notification-pannel.png
-│   │   ├── spotify.png
-│   │   ├── start-menu.png
-│   │   ├── taskbar.png
-│   │   └── yasb.png
-│   └── screenshots/
-│
-├── configs/
-│   │
-│   ├── CEF-Spotify-Tweaks/
-│   │   └── config.yaml
-│   │
-│   ├── Fluent-Flyouts/
-│   │   └── FluentFlyout_Settings.xml
-│   │
-│   ├── Taskbar-Dock-Animation/
-│   │   └── taskbar-dock-animation.yaml
-│   │
-│   ├── Taskbar-Height-and-Icon-Size/
-│   │   └── taskbar-icon-size.yaml
-│   │
-│   ├── Translucent-Windows/
-│   │   └── translucent-windows.yaml
-│   │
-│   ├── Windows-11-File-Explorer-Styler/
-│   │   └── file-explorer-styler.yaml
-│   │
-│   ├── Windows-11-Start-Menu-Styler/
-│   │   └── start-menu-styler.yaml
-│   │
-│   ├── Windows-11-Taskbar-Styler/
-│   │   └── taskbar-styler.yaml
-│   │
-│   └── YASB/
-│       ├── config.yaml
-│       └── styles.css
-│
-├── docs/
-│   ├── configuration.md
-│   ├── installation.md
-│   ├── requirements.md
-│   └── troubleshooting.md
-│
-└── spotify/
-    ├── color.ini
-    └── user.css
+📁 Windows-Liquid-Glass-Theme/
+    ├── 📁 assets/
+    │   ├── 📁 fonts/
+    │   │   └── 📄 JetBrainsMonoNerdFontPropo-Regular.ttf
+    │   ├── 📁 previews/
+    │   │   ├── 🖼️ desktop.png
+    │   │   ├── 🖼️ file-explorer.png
+    │   │   ├── 🖼️ navigation-pannel.png
+    │   │   ├── 🖼️ notification pannel.png
+    │   │   ├── 🖼️ spotify.png
+    │   │   ├── 🖼️ start-menu.png
+    │   │   ├── 🖼️ taskbar.png
+    │   │   └── 🖼️ yasb.png
+    │   └── 📁 screenshots/
+    │       ├── 🖼️ desktop1.png
+    │       ├── 🖼️ desktop2.png
+    │       ├── 🖼️ desktop3.png
+    │       ├── 🖼️ desktop4.png
+    │       ├── 🖼️ navigation-pannel1.png
+    │       ├── 🖼️ notification pannel1.png
+    │       ├── 🖼️ spotify1.png
+    │       ├── 🖼️ spotify2.png
+    │       ├── 🖼️ start-menu1.png
+    │       ├── 🖼️ taskbar2.png
+    │       ├── 🖼️ taskbar3.png
+    │       ├── 🖼️ yasb1.png
+    │       └── 🖼️ yasb2.png
+    ├── 📁 configs/
+    │   ├── 📁 CEF-Spotify Tweaks/
+    │   │   └── 📄 config.yaml
+    │   ├── 📁 Fluent Flyouts/
+    │   │   └── 📄 FluentFlyout_Settings.xml
+    │   ├── 📁 Taskbar Dock Animation/
+    │   │   └── 📄 taskbar-dock-animation.yaml
+    │   ├── 📁 Taskbar height and icon size/
+    │   │   └── 📄 taskbar-icon-size.yaml
+    │   ├── 📁 Translucent Windows/
+    │   │   └── 📄 translucent-windows.yaml
+    │   ├── 📁 Windows 11 File Explorer Styler/
+    │   │   └── 📄 file-explorer-styler.yaml
+    │   ├── 📁 Windows 11 Start Menu Styler/
+    │   │   └── 📄 start-menu-styler.yaml
+    │   ├── 📁 Windows 11 Taskbar Styler/
+    │   │   └── 📄 taskbar-styler.yaml
+    │   └── 📁 yasb/
+    │       ├── 📄 config.yaml
+    │       └── 🎨 styles.css
+    ├── 📁 docs/
+    │   ├── 📄 configuration.md
+    │   ├── 📄 installation.md
+    │   ├── 📄 requirements.md
+    │   └── 📄 troubleshooting.md
+    ├── 📁 spotify/
+    │   ├── 📄 color.ini
+    │   └── 🎨 user.css
+    ├── 📄 .gitignore
+    ├── 📄 credits.md
+    ├── 📄 LICENSE
+    ├── 📄 README.md
+    └── 📄 THIRD-PARTY-NOTICES.md
+
 ```
 
 ---
