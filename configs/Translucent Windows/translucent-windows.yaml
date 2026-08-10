@@ -1,0 +1,16 @@
+RenderingMod:
+  ThemeBackground: 1
+  SysColors: 0
+  AccentColorControls: 1
+BackgroundEffects:
+  type: acrylicblur
+  AccentBlurBehind: 3A232323
+FlyoutsEffects: 1
+RuledPrograms:
+  - target: Spotify.exe
+    RenderingMod:
+      ThemeBackground: 1
+      AccentColorControls: 1
+    BackgroundEffects:
+      type: acrylicblur
+      AccentBlurBehind: ''

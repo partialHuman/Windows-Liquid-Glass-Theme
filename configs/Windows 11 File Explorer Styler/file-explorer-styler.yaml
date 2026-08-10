@@ -1,0 +1,30 @@
+theme: Translucent Explorer11
+backgroundTranslucentEffect: ''
+backgroundTranslucentEffectRegion: entireWindow
+styleConstants:
+  - ''
+controlStyles:
+  - target: Grid#NavigationBarControlGrid
+    styles:
+      - Background:=<WindhawkBlur BlurAmount="1" TintColor="#18202020" TintOpacity="0.25"/>
+      - BorderThickness=0,0,0,0
+      - BorderBrush=#30FFFFFF
+  - target: Grid#DetailsViewControlRootGrid
+    styles:
+      - Background:=<WindhawkBlur BlurAmount="10" TintColor="#18202020" TintOpacity="0.25"/>
+      - BorderThickness=0,0,1,1
+      - BorderBrush=#25FFFFFF
+  - target: StackPanel#DetailsViewThumbnail
+    styles:
+      - Background=WindhawkBlur
+      - BorderThickness=0,0,0,1
+      - BorderBrush=#40FFFFFF
+  - target: Grid#CommandBarControlRootGrid
+    styles:
+      - BorderThickness=1
+      - BorderBrush=#40FFFFFF
+      - CornerRadius=2
+themeResourceVariables:
+  - ''
+explorerFrameContainerHeight: 0
+xamlDiagnosticsHandling: alert

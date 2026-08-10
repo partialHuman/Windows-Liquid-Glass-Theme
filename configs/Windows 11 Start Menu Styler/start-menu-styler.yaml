@@ -1,0 +1,43 @@
+theme: LiquidGlass
+disableNewStartMenuLayout: ''
+styleConstants:
+  - Background=<WindhawkBlur BlurAmount="10" TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="0.2" />
+  - ElementBackground=<WindhawkBlur BlurAmount="15" TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="0.2" />
+  - ElementBackground2=<WindhawkBlur BlurAmount="15" TintColor="{ThemeResource SystemAltLowColor}" TintOpacity="0.2" />
+  - AccentBackground=<WindhawkBlur BlurAmount="15" TintColor="{ThemeResource SystemAccentColorLight1}" TintOpacity="0.2" />
+  - BorderBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#70FFFFFF" Offset="0.0" /><GradientStop Color="#40505050" Offset="0.5" /><GradientStop Color="#70FFFFFF" Offset="1" /></LinearGradientBrush>
+  - ElementBorderBrush=<LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#65FFFFFF" Offset="0.0" /><GradientStop Color="#35404040" Offset="0.5" /><GradientStop Color="#40FFFFFF" Offset="1.0" /></LinearGradientBrush>
+controlStyles:
+  - target: Grid#MainMenu
+    styles:
+      - Width=800
+  - target: Grid#FrameRoot
+    styles:
+      - Height=600
+  - target: StartMenu.PinnedList
+    styles:
+      - Height=50
+  - target: GridView#RecommendedList
+    styles:
+      - Margin=0,0,0,0
+  - target: Grid#AllListHeading
+    styles:
+      - Margin=0,0,0,0
+  - target: StartMenu.CategoryControl
+    styles:
+      - Margin=0,0,0,0
+  - target: GridView#AllAppsGrid
+    styles:
+      - RenderTransform:=<TranslateTransform X="-15" Y="0" />
+  - target: Cortana.UI.Views.TaskbarSearchPage
+    styles:
+      - Width=825
+      - Height=600
+      - RenderTransform:=<TranslateTransform Y="145" />
+themeResourceVariables:
+  - ''
+webContentStyles:
+  - target: ''
+    styles:
+      - ''
+webContentCustomJs: ''

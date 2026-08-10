@@ -1,0 +1,354 @@
+/* =========================================================
+   LIQUID GLASS — all four bars as matching floating islands
+   (top bar, left nav, right sidebar, now-playing bar)
+   ========================================================= */
+
+:root {
+    --gap: 8px;                 /* consistent gap between every island */
+    --radius: 18px;              /* consistent corner radius, matches bottom bar */
+
+    --glass-bg: rgba(30, 35, 40, 0.25);      /* lighter now that real desktop (43, 57, 70, 0.24)
+                                                  blur sits behind everything */
+    --glass-blur: 10px;                       /* light softening only — the
+                                                  real blur is done by Windhawk */
+    --glass-sat: 100%;
+    --glass-border: rgba(255, 255, 255, 0.18);  /* white glass outline/border */
+
+    --glass-hover: rgba(255, 255, 255, 0.08);   /* hover highlight */
+
+    --topbar-h: 64px;   /* used to pad the middle column so it lines up
+                           with the top/bottom of the side panels */
+    --playerbar-h: 90px;
+}
+
+/* ---------------------------------------------------------
+   0. SYSTEMIC FIX: Spotify's design system (Encore) paints most
+      surfaces using CSS variables like --background-base,
+      --background-elevated-base, etc. Individual class names
+      change often between builds, but these tokens are stable —
+      overriding them at the root kills stubborn opaque layers
+      (like the violet action bar) without needing the exact
+      class name.
+   --------------------------------------------------------- */
+:root,
+.encore-dark-theme,
+.encore-base-set {
+    --background-base: transparent !important;
+    --background-highlight: transparent !important;
+    --background-press: transparent !important;
+    --background-elevated-base: transparent !important;
+    --background-elevated-highlight: transparent !important;
+    --background-elevated-press: transparent !important;
+    --background-tinted-base: transparent !important;
+    --background-tinted-highlight: transparent !important;
+    --background-tinted-press: transparent !important;
+    --essential-base: #ffffff !important;
+}
+
+/* ---------------------------------------------------------
+   0b. Ambient color wash — sits behind ALL four glass panels
+       (not just the main view), so the left/right sidebars have
+       something colorful to blur instead of looking flat/opaque.
+   --------------------------------------------------------- */
+.Root {
+    background: transparent !important;
+}
+
+/* ---------------------------------------------------------
+   1. Strip every structural wrapper down to fully transparent
+      first, so nothing double-tints or double-blurs behind
+      the actual panels below.
+   --------------------------------------------------------- */
+html,
+body,
+#main,
+.Root__top-container,
+.Root__main-view,
+.main-view-container,
+.main-view-container__scroll-node,
+.main-view-container__scroll-node-child,
+.main-topBar-background,
+.main-actionBar-ActionBar,
+.main-entityHeader-background,
+.main-entityHeader-backgroundColor,
+.main-entityHeader-overlay,
+.under-main-view,
+.main-home-homeHeader {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
+/* Root__top-container just needs to lay out its children with
+   the gap — no visual styling of its own */
+.Root__top-container {
+    padding: 0 !important;
+}
+
+/* ---------------------------------------------------------
+   2. TOP BAR — glass island, full width, rounded all corners
+   --------------------------------------------------------- */
+.main-topBar-container,
+.main-globalNav-container,
+.main-globalNav-globalNav,
+.Root__globalNav {
+    margin: var(--gap) var(--gap) 0 var(--gap) !important;
+
+    background: var(--glass-bg) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--radius) !important;
+
+    overflow: hidden !important;
+}
+
+/* the opaque black bar in the screenshot is very likely an inner
+   wrapper painted on top of the container above — strip every
+   direct child's own background so the glass shows through */
+.main-topBar-container > *,
+.main-globalNav-container > *,
+.main-globalNav-globalNav > *,
+.Root__globalNav > * {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+.main-topBar-container button {
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    border-radius: 14px !important;
+}
+
+.x-searchInput-searchInputInput {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 15px !important;
+}
+
+/* ---------------------------------------------------------
+   3. LEFT SIDEBAR (nav rail / library) — same island style,
+      sits below the top bar with one gap, not two.
+   --------------------------------------------------------- */
+.Root__nav-bar,
+.main-navBar-navBar {
+    margin: var(--gap) 0 var(--gap) var(--gap) !important;
+
+    background: var(--glass-bg) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--radius) !important;
+
+    overflow: hidden !important;
+}
+
+/* same logic as the top bar — strip inner wrapper backgrounds
+   so they don't sit opaque on top of the glass container */
+.Root__nav-bar > *,
+.main-navBar-navBar > * {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+.main-yourLibraryX-libraryContainer {
+    background: transparent !important;
+}
+
+.main-navBar-navBarLink,
+.main-navBar-navBarLinkActive {
+    border-radius: 10px;
+    transition: background 0.2s ease;
+}
+.main-navBar-navBarLink:hover {
+    background: var(--glass-hover);
+}
+.main-navBar-navBarLinkActive {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+/* ---------------------------------------------------------
+   4. RIGHT SIDEBAR (now playing view / queue) — same island
+   --------------------------------------------------------- */
+.Root__right-sidebar {
+    margin: var(--gap) var(--gap) var(--gap) 0 !important;
+
+    background: var(--glass-bg) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--radius) !important;
+
+    overflow: hidden !important;
+}
+
+.main-nowPlayingView-section {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 14px !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
+/* kill the thin divider lines between stacked sections
+   (About the artist / Credits / etc.) inside the right panel */
+.Root__right-sidebar hr,
+.Root__right-sidebar [class*="divider"],
+.Root__right-sidebar [class*="Divider"],
+.main-nowPlayingView-section,
+.main-nowPlayingView-section * {
+    border-top: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+/* keep the panel's own outer border (set above), only its
+   inner children lose theirs */
+.main-nowPlayingView-section {
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ---------------------------------------------------------
+   5. BOTTOM PLAYER — unchanged style, just aligned to the
+      same --gap / --radius tokens as everything else
+   --------------------------------------------------------- */
+.Root__now-playing-bar {
+    background: transparent !important;
+}
+
+.main-nowPlayingBar-container {
+    margin: 0 var(--gap) var(--gap) var(--gap) !important;
+
+    background: var(--glass-bg) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--radius) !important;
+
+    box-shadow: none !important;
+}
+
+/* ---------------------------------------------------------
+   5b. STICKY FILTER/ACTION BAR ("All / Music / Podcasts")
+       Spotify paints this with a solid color sampled from the
+       page's artwork once you scroll — it's a separate layer
+       from .main-actionBar-ActionBar reset above, so it needs
+       its own override.
+   --------------------------------------------------------- */
+.main-actionBarBackground-background,
+.main-actionBar-ActionBarBackground,
+div[class*="actionBar-ActionBarBackground"],
+div[class*="ActionBarBackground"],
+div[class*="actionBar"],
+div[class*="ActionBar"] {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+}
+
+/* strip any inner wrapper's own background too, in case the
+   solid color is painted on a child rather than this element */
+div[class*="actionBar"] > *,
+div[class*="ActionBar"] > * {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* the wildcard child reset above also strips the All/Music/
+   Podcasts pill buttons — restore them with a glass pill look
+   so they don't go fully invisible */
+div[class*="actionBar"] button,
+div[class*="ActionBar"] button {
+    background-color: rgba(255, 255, 255, 0.10) !important;
+    border-radius: 999px !important;
+}
+div[class*="actionBar"] button[aria-checked="true"],
+div[class*="ActionBar"] button[aria-checked="true"] {
+    background-color: rgba(255, 255, 255, 0.92) !important;
+    color: #08131f !important;
+}
+
+/* ---------------------------------------------------------
+   7. MIDDLE COLUMN — give it the same rounded glass-island
+      treatment as the other four panels instead of edge-to-
+      edge content.
+   --------------------------------------------------------- */
+.Root__main-view {
+    margin: var(--gap) var(--gap) var(--gap) 0 !important;
+
+    background: var(--glass-bg) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--radius) !important;
+
+    overflow: hidden !important;
+}
+
+.main-view-container__scroll-node-child {
+    padding-top: var(--gap) !important;
+    padding-bottom: var(--gap) !important;
+    box-sizing: border-box !important;
+}
+
+/* ---------------------------------------------------------
+   8. Hide the small circular source/badge icons on tile
+      artwork (Daily Mix numbering, "made for you" dots, etc.)
+      NOTE: best-effort by class-name pattern — if some remain,
+      send a devtools class name and I'll target it precisely.
+   --------------------------------------------------------- */
+[class*="cardImage-metadataIcon"],
+[class*="card-badge"],
+[class*="Badge-badge"],
+[class*="sourceIcon"],
+[class*="metadataIcon"] {
+    display: none !important;
+}
+.main-card-card {
+    background: rgba(43, 57, 70, 0.20) !important;
+    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+    transition: background 0.2s ease;
+}
+.main-card-card:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* =========================================================
+   RECENTS PILL — SPACING
+   ========================================================= */
+
+button[aria-label*="Recents"],
+[class*="Recents"] {
+    padding: 4px 10px !important;
+    margin: 0 !important;
+
+    border-radius: 999px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+}
+
+/* Text spacing */
+button[aria-label*="Recents"] span,
+[class*="Recents"] span {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Recents icon */
+button[aria-label*="Recents"] svg,
+[class*="Recents"] svg {
+    margin: 0 !important;
+    width: 16px !important;
+    height: 16px !important;
+}
