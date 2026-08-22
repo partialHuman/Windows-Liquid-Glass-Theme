@@ -7,14 +7,14 @@
     --gap: 8px;                 /* consistent gap between every island */
     --radius: 18px;              /* consistent corner radius, matches bottom bar */
 
-    --glass-bg: rgba(30, 35, 40, 0.25);      /* lighter now that real desktop (43, 57, 70, 0.24)
+    --glass-bg: rgba(43, 57, 70, 0.14);      /* lighter now that real desktop
                                                   blur sits behind everything */
     --glass-blur: 10px;                       /* light softening only — the
                                                   real blur is done by Windhawk */
-    --glass-sat: 100%;
-    --glass-border: rgba(255, 255, 255, 0.18);  /* white glass outline/border */
+    --glass-sat: 130%;
+    --glass-border: rgba(255, 255, 255, 0.18);
 
-    --glass-hover: rgba(255, 255, 255, 0.08);   /* hover highlight */
+    --glass-hover: rgba(255, 255, 255, 0.08);
 
     --topbar-h: 64px;   /* used to pad the middle column so it lines up
                            with the top/bottom of the side panels */
@@ -249,7 +249,7 @@ div[class*="ActionBar"] {
     background-color: transparent !important;
     background-image: none !important;
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
-    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+    backdrop-filter: blur(var(--glass-bg)) saturate(var(--glass-sat)) !important;
 }
 
 /* strip any inner wrapper's own background too, in case the
@@ -265,13 +265,25 @@ div[class*="ActionBar"] > * {
    so they don't go fully invisible */
 div[class*="actionBar"] button,
 div[class*="ActionBar"] button {
-    background-color: rgba(255, 255, 255, 0.10) !important;
+    background-color: rgba(255, 255, 255, 0) !important;
     border-radius: 999px !important;
 }
 div[class*="actionBar"] button[aria-checked="true"],
 div[class*="ActionBar"] button[aria-checked="true"] {
-    background-color: rgba(255, 255, 255, 0.92) !important;
+    background-color: rgba(255, 255, 255, 0) !important;
     color: #08131f !important;
+}
+
+/* the dark rounded wrapper hugging just the pill buttons keeps
+   evading class-name guesses — target it structurally instead:
+   whatever element is the direct parent of a pill button */
+*:has(> button[aria-checked]) {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
 }
 
 /* ---------------------------------------------------------
@@ -322,33 +334,202 @@ div[class*="ActionBar"] button[aria-checked="true"] {
     background: rgba(255, 255, 255, 0.08) !important;
 }
 
+/* ---------------------------------------------------------
+   9. STICKY ENTITY HEADER (collapsed playlist/album title bar
+      that appears when scrolling) — fill full width, remove
+      the gap on its right edge.
+   --------------------------------------------------------- */
+.main-entityHeader-container,
+.main-entityHeader-headerText,
+[class*="entityHeader-container"],
+[class*="entityHeader-headerText"] {
+    width: 100% !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* ---------------------------------------------------------
+   10. Kill the shared oval/pill background that wraps icon-
+      button groups (Download + More, Add + duration + More on
+      a track row hover, etc.) — it's a separate wrapper element
+      sitting behind the individually-styled circular buttons.
+   --------------------------------------------------------- */
+*:has(> button[aria-label]) {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* ---------------------------------------------------------
+   10. FIX: oval/pill backgrounds on icon-only buttons (More
+       options, kebab menu, etc.) — the earlier rules used
+       case-sensitive [aria-label*="More"], which silently
+       fails to match if Spotify's actual label is lowercase
+       ("more options for..."). Adding case-insensitive (i)
+       versions here, which — being later in the file — will
+       win over the earlier rules on any real conflict.
+   --------------------------------------------------------- */
+button[aria-label*="more" i],
+button[aria-label*="add" i]:not([aria-label*="address" i]),
+button[aria-label*="remove" i],
+button[aria-label*="download" i],
+button[aria-label*="shuffle" i],
+button[aria-label*="options" i] {
+    width: 28px !important;
+    height: 28px !important;
+    /* min-width: 32px !important; */
+    /* min-height: 32px !important; */
+    /* max-width: 32px !important; */
+    /* max-height: 32px !important; */
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    border-radius: 50% !important;
+    background: rgba(17, 120, 216, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+button[aria-label*="more" i] svg,
+button[aria-label*="add" i] svg,
+button[aria-label*="remove" i] svg,
+button[aria-label*="download" i] svg,
+button[aria-label*="shuffle" i] svg,
+button[aria-label*="options" i] svg {
+    width: 20px !important;
+    height: 20px !important;
+    margin: 2px !important;
+}
+
+/* generic catch-all: any icon-only button (svg as its only
+   child, no visible text) gets forced to a true circle,
+   regardless of aria-label wording */
+button:not([aria-label]):has(> svg:only-child) {
+    aspect-ratio: 1 / 1 !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+}
+
+.main-trackList-trackListHeaderRow > [aria-colindex="5"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: right !important;
+
+    padding-left: 0px !important;
+    padding-right: 40px !important;
+}
+
+.main-trackList-trackListHeaderRow > [aria-colindex="5"] button,
+.main-trackList-trackListHeaderRow > [aria-colindex="5"] svg {
+    margin: 2px !important;
+}
+
 /* =========================================================
-   RECENTS PILL — SPACING
+   FIX COLUMNS MENU CHECKBOXES
+   Album / Duration / other column selectors
    ========================================================= */
 
-button[aria-label*="Recents"],
-[class*="Recents"] {
-    padding: 4px 10px !important;
+/* Reset the column menu buttons */
+.main-contextMenu-menuItem button[role="menuitemcheckbox"],
+button[role="menuitemcheckbox"][aria-label="Album"],
+button[role="menuitemcheckbox"][aria-label="Duration"] {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: auto !important;
+    min-height: 44px !important;
+
+    padding: 0 16px !important;
     margin: 0 !important;
 
-    border-radius: 999px !important;
+    border: none !important;
+    border-radius: 0 !important;
+
+    background: transparent !important;
+    background-color: transparent !important;
+
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 
     display: flex !important;
     align-items: center !important;
-    gap: 5px !important;
+    justify-content: space-between !important;
+
+    box-sizing: border-box !important;
 }
 
-/* Text spacing */
-button[aria-label*="Recents"] span,
-[class*="Recents"] span {
-    margin: 0 !important;
-    padding: 0 !important;
+/* Remove the unwanted oval/circle background */
+button[role="menuitemcheckbox"]::before,
+button[role="menuitemcheckbox"]::after {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
-/* Recents icon */
-button[aria-label*="Recents"] svg,
-[class*="Recents"] svg {
+/* Keep the actual checkbox area clean */
+button[role="menuitemcheckbox"] [class*="checkbox"],
+button[role="menuitemcheckbox"] [class*="Checkbox"] {
     margin: 0 !important;
-    width: 16px !important;
-    height: 16px !important;
+
+    border-radius: 4px !important;
+
+    background-color: transparent !important;
+    box-shadow: none !important;
+
+    transform: none !important;
+}
+
+/* Checked state */
+button[role="menuitemcheckbox"][aria-checked="true"] [class*="checkbox"],
+button[role="menuitemcheckbox"][aria-checked="true"] [class*="Checkbox"] {
+    background: rgba(120, 205, 240, 0.9) !important;
+}
+
+/* Prevent your general Spotify button rules from resizing these */
+button[role="menuitemcheckbox"] {
+    max-width: none !important;
+    max-height: none !important;
+}
+
+/* =========================================================
+   FIX ADD TO PLAYLIST BUTTON
+   ========================================================= */
+
+.main-trackList-trackListRow button[aria-label="Add to Playlist"], 
+.main-trackList-rowSectionEnd button[aria-label="Add to Playlist"] 
+{
+    background: rgba(43, 57, 70, 0.20) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    box-shadow: none !important;
+    width: 42px !important;
+    height: 32px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    border-radius: 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    backdrop-filter: blur(10px) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(120%) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: background 0.18s ease, border-color 0.18s ease !important;
+}
+
+
+/* Hover */
+.main-trackList-trackListRow button[aria-label="Add to Playlist"]:hover,
+.main-trackList-rowSectionEnd button[aria-label="Add to Playlist"]:hover {
+    border-color: rgba(255, 255, 255, 0.24) !important;
+}
+
+/* Center the plus icon */
+.main-trackList-trackListRow button[aria-label="Add to Playlist"] svg,
+.main-trackList-rowSectionEnd button[aria-label="Add to Playlist"] svg {
+    width: 18px !important;
+    height: 18px !important;
+    margin: 0 !important;
 }

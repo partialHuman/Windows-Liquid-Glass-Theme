@@ -5,6 +5,7 @@ komorebi:
   start_command: "komorebic start --whkd"
   stop_command: "komorebic stop --whkd"
   reload_command: "komorebic stop --whkd && komorebic start --whkd"
+
 bars:
   primary-bar:
     enabled: true
@@ -18,13 +19,14 @@ bars:
       acrylic: false
       dark_mode: true
       round_corners: true
-      border_color: None
+      round_corners_type: "normal"
+      border_color: "#40FFFFFF"
     window_flags:
       always_on_top: false
       windows_app_bar: true
     dimensions:
       width: "100%"
-      height: 32
+      height: 30
     padding:
       top: 4
       left: 6
