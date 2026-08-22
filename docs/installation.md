@@ -538,6 +538,11 @@ Then:
 spicetify config current_theme
 ```
 
+To file path use:
+```
+spicetify config
+``` 
+
 The expected theme configuration for this project is:
 
 ```text
@@ -582,6 +587,24 @@ This contains the main visual customization:
 ## Apply Spotify Customization
 
 Copy the theme files into the appropriate Spicetify theme/custom CSS location.
+
+After Installing spicetify the themes folder is created at the default location:
+```
+C:\...\...\AppData\Roaming\spicetify\Themes
+```
+Create a New folder inside Themes named `LiquidGlass`
+
+So it becomes:
+```
+C:\...\...\AppData\Roaming\spicetify\Themes\LiquidGlass
+```
+
+Now copy-paste both config files to `LiquidGlass`
+```
+C:\...\...\AppData\Roaming\spicetify\Themes\LiquidGlass
+    ├── color.ini
+    └── user.css
+```
 
 After copying the files, apply the configuration:
 
