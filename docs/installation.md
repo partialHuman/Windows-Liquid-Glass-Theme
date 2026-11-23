@@ -12,11 +12,11 @@ The project combines Windhawk mods, YASB, Spicetify, Fluent Flyouts, and additio
 2. [Before Installation](#2-before-installation)
 3. [Windhawk](#3-windhawk)
 4. [Translucent Windows](#4-translucent-windows)
-5. [Taskbar Styler](#5-windows-11-taskbar-styler)
+5. [Windows 11 Taskbar Styler](#5-windows-11-taskbar-styler)
 6. [Taskbar Height and Icon Size](#6-taskbar-height-and-icon-size)
 7. [Taskbar Dock Animation](#7-taskbar-dock-animation)
-8. [Start Menu Styler](#8-windows-11-start-menu-styler)
-9. [File Explorer Styler](#9-windows-11-file-explorer-styler)
+8. [Windows 11 Start Menu Styler](#8-windows-11-start-menu-styler)
+9. [Windows 11 File Explorer Styler](#9-windows-11-file-explorer-styler)
 10. [YASB](#10-yasb)
 11. [CEF Spotify Tweaks](#11-cef-spotify-tweaks)
 12. [Spicetify](#12-spicetify)
@@ -33,64 +33,60 @@ The project combines Windhawk mods, YASB, Spicetify, Fluent Flyouts, and additio
 
 This project is designed primarily for:
 
-* Windows 11
-* Dark mode recommended
-* A Windows build compatible with the installed Windhawk mods
+- Windows 11
+- Dark mode recommended
+- A Windows build compatible with the installed Windhawk mods
 
 Compatibility may change after Windows updates because the styling targets used by Windows UI components can change.
 
----
-
 ## Required Software
 
-| Component                 | Software                        |
-| ------------------------- | ------------------------------- |
-| Windows UI customization  | Windhawk                        |
-| Taskbar                   | Windows 11 Taskbar Styler       |
-| Start Menu                | Windows 11 Start Menu Styler    |
-| File Explorer             | Windows 11 File Explorer Styler |
-| System transparency       | Translucent Windows             |
-| Taskbar sizing            | Taskbar height and icon size    |
-| Taskbar animation         | Taskbar Dock Animation          |
-| Custom top bar            | YASB                            |
-| Spotify customization     | Spicetify                       |
-| Spotify CEF customization | CEF Spotify Tweaks              |
-| System/media flyouts      | Fluent Flyouts                  |
-
+| Component | Software |
+|---|---|
+| Windows UI customization | Windhawk |
+| Taskbar | Windows 11 Taskbar Styler |
+| Start Menu | Windows 11 Start Menu Styler |
+| File Explorer | Windows 11 File Explorer Styler |
+| System transparency | Translucent Windows |
+| Taskbar sizing | Taskbar Height and Icon Size |
+| Taskbar animation | Taskbar Dock Animation |
+| Custom top bar | YASB |
+| Spotify customization | Spotify Desktop + Spicetify |
+| Spotify CEF customization | CEF Spotify Tweaks |
+| System/media flyouts | Fluent Flyouts |
 
 ## Recommended Installation Order
 
-For the closest result to the project preview, install the components in this order:
+For the closest result to the project preview, install the components in this order.
 
 ### Core Windows UI
 
-1. Install [Windhawk](https://windhawk.net/)
-2. Install Translucent Windows
-3. Install Windows 11 Taskbar Styler
-4. Install Taskbar Height and Icon Size
-5. Install Windows 11 Start Menu Styler
-6. Install Windows 11 File Explorer Styler
+1. Install [Windhawk](https://windhawk.net/).
+2. Install Translucent Windows.
+3. Install Windows 11 Taskbar Styler.
+4. Install Taskbar Height and Icon Size.
+5. Install Windows 11 Start Menu Styler.
+6. Install Windows 11 File Explorer Styler.
 
 ### Additional Windows Components
 
-7. Install Taskbar Dock Animation
-8. Install Fluent Flyouts
+7. Install Taskbar Dock Animation.
+8. Install Fluent Flyouts.
 
 ### Custom Top Bar
 
-9. Install [YASB](https://github.com/amnweb/yasb)
-10. Install the [JetBrains Mono Nerd Font](JetBrainsMonoNerdFontPropo-Regular.ttf)
-11. Apply `config.yaml`
-12. Apply `styles.css`
+9. Install [YASB](https://github.com/amnweb/yasb).
+10. Install the JetBrains Mono Nerd Font included in `assets/fonts/`.
+11. Apply the repository's `config.yaml`.
+12. Apply the repository's `styles.css`.
 
 ### Spotify
 
-13. Install [Spotify](https://download.scdn.co/SpotifySetup.exe)
-14. Install [Spicetify](https://spicetify.app/docs/getting-started)
-15. Apply the Liquid Glass Spotify files
-16. Install CEF Spotify Tweaks
-17. Apply the CEF configuration
-
+13. Install the [Spotify Desktop Client](https://download.scdn.co/SpotifySetup.exe).
+14. Install [Spicetify](https://spicetify.app/docs/getting-started).
+15. Select and install either the Liquid Glass or Misty Forest theme.
+16. Install CEF Spotify Tweaks if required.
+17. Apply the corresponding CEF configuration.
 
 ---
 
@@ -104,7 +100,12 @@ This repository contains customized configurations intended for this specific Li
 
 Do not overwrite your existing configuration if you want to preserve your current Windows customization.
 
----
+Recommended backups:
+
+- Existing Windhawk mod configurations
+- Existing YASB configuration and styles
+- Existing Spicetify theme files
+- Existing Fluent Flyouts settings
 
 ## 2. Close Applications When Required
 
@@ -136,28 +137,31 @@ After installation:
 2. Open **Mods**.
 3. Search for the required mod.
 4. Install the mod.
-   - CEF/Spotify Tweaks
-   - Taskbar Dock Animation
-   - Taskbar height and icon size
-   - Taskbar Volume Control
-   - Translucent Windows
-   - Windows 11 File Explorer Styler
-   - Windows 11 Notificaton Center Styler
-   - Windows 11 Start Menu Styler
-   - Windows 11 Taskbar Styler
 5. Open the mod's **Settings**.
-6. Switch to the appropriate configuration/textual mode when required.
-7. Paste the configuration from this repository.
-8. Save the settings.
-9. Reload the mod.
+6. Switch to **Textual mode** when required.
+7. Open the corresponding configuration file from this repository.
+8. Copy the configuration.
+9. Paste it into the Windhawk configuration editor.
+10. Save the settings.
+11. Reload the mod.
 
-The official Windows 11 Taskbar Styler guide follows the same general process: install Windhawk, open Mods, install Windows 11 Taskbar Styler, and configure it from the Settings tab.
+The repository contains configurations for:
+
+- Translucent Windows
+- Windows 11 Taskbar Styler
+- Taskbar Height and Icon Size
+- Taskbar Dock Animation
+- Windows 11 Start Menu Styler
+- Windows 11 File Explorer Styler
+- CEF Spotify Tweaks
+
+Some additional Windhawk mods may be required for features that do not have a configuration file included in this repository.
 
 ---
 
 # 4. Translucent Windows
 
-Install the `Translucent Windows` from Windhawk application.
+Install the **Translucent Windows** mod from Windhawk.
 
 ## Installation
 
@@ -170,7 +174,7 @@ Install the `Translucent Windows` from Windhawk application.
 7. Open:
 
 ```text
-configs/Translucent Windows/translucent-windows-styler.yaml
+configs/Translucent Windows/translucent-windows.yaml
 ```
 
 8. Copy the configuration.
@@ -184,15 +188,22 @@ This configuration provides the system-level translucent/acrylic effect used by 
 
 The configuration also contains a Spotify-specific rule.
 
-This is intentional because Spotify has its own transparency and glass styling in:
+This is intentional because Spotify has its own transparency and glass styling in its Spicetify theme files.
+
+The Spotify variants are stored separately:
 
 ```text
 spotify/
-├── color.ini
-└── user.css
+├── Liquid-Glass/
+│   ├── color.ini
+│   └── user.css
+│
+└── Misty-Forest/
+    ├── color.ini
+    └── user.css
 ```
 
-Do not remove the Spotify rule unless you want Spotify to inherit the general Windows transparency behavior.
+Do not remove the Spotify rule unless you want to change how Spotify interacts with the general Windows transparency configuration.
 
 ---
 
@@ -208,7 +219,7 @@ Repository configuration:
 
 ```text
 configs/
-└── Windows-11-Taskbar-Styler/
+└── Windows 11 Taskbar Styler/
     └── taskbar-styler.yaml
 ```
 
@@ -223,7 +234,7 @@ configs/
 7. Open:
 
 ```text
-configs/Windows-11-Taskbar-Styler/taskbar-styler.yaml
+configs/Windows 11 Taskbar Styler/taskbar-styler.yaml
 ```
 
 8. Copy the configuration.
@@ -231,19 +242,19 @@ configs/Windows-11-Taskbar-Styler/taskbar-styler.yaml
 10. Save the configuration.
 11. Restart/reload the mod.
 
-## What it controls
+## What It Controls
 
 The configuration controls:
 
-* Taskbar positioning
-* Taskbar margins
-* Rounded corners
-* Taskbar border
-* Background transparency
-* Task item glass
-* System tray glass
-* Task button spacing
-* Running indicators
+- Taskbar positioning
+- Taskbar margins
+- Rounded corners
+- Taskbar border
+- Background transparency
+- Task item glass
+- System tray glass
+- Task button spacing
+- Running indicators
 
 The current configuration uses the `Fluid` theme identifier.
 
@@ -251,8 +262,10 @@ The current configuration uses the `Fluid` theme identifier.
 
 # 6. Taskbar Height and Icon Size
 
+This component adjusts the Windows Taskbar dimensions and icon sizing.
+
 ## Installation
- 
+
 1. Open Windhawk.
 2. Open **Mods**.
 3. Search for **Taskbar height and icon size**.
@@ -262,7 +275,7 @@ The current configuration uses the `Fluid` theme identifier.
 7. Open:
 
 ```text
-configs/Taskbar-Height-and-Icon-Size/taskbar-icon-size.yaml
+configs/Taskbar height and icon size/taskbar-icon-size.yaml
 ```
 
 8. Copy the configuration.
@@ -276,15 +289,17 @@ Taskbar Styler and Taskbar Height and Icon Size work together.
 
 If you change the taskbar height, you may need to adjust:
 
-* Taskbar margins
-* Task button margins
-* System tray margins
-* YASB alignment
-* Dock animation spacing
+- Taskbar margins
+- Task button margins
+- System tray margins
+- Icon dimensions
+- YASB alignment
 
 ---
 
 # 7. Taskbar Dock Animation
+
+This component provides the dock-style Taskbar animation.
 
 ## Installation
 
@@ -297,7 +312,7 @@ If you change the taskbar height, you may need to adjust:
 7. Open:
 
 ```text
-configs/Taskbar-Dock-Animation/taskbar-dock-animation.yaml
+configs/Taskbar Dock Animation/taskbar-dock-animation.yaml
 ```
 
 8. Copy the configuration.
@@ -305,11 +320,13 @@ configs/Taskbar-Dock-Animation/taskbar-dock-animation.yaml
 10. Save the configuration.
 11. Restart/reload the mod.
 
-If you want the standard Liquid Glass appearance without additional animation, you can skip this component.
+The animation settings can be adjusted independently of the main Taskbar Styler configuration.
 
 ---
 
 # 8. Windows 11 Start Menu Styler
+
+This component customizes the Windows 11 Start Menu.
 
 ## Installation
 
@@ -322,7 +339,7 @@ If you want the standard Liquid Glass appearance without additional animation, y
 7. Open:
 
 ```text
-configs/Windows-11-Start-Menu-Styler/start-menu-styler.yaml
+configs/Windows 11 Start Menu Styler/start-menu-styler.yaml
 ```
 
 8. Copy the configuration.
@@ -330,31 +347,22 @@ configs/Windows-11-Start-Menu-Styler/start-menu-styler.yaml
 10. Save the configuration.
 11. Restart/reload the mod.
 
-## Current customization
+## Current Customization
 
-The configuration includes:
+The configuration is designed to provide:
 
-* Liquid Glass background
-* Blur
-* Transparent elements
-* Glass borders
-* Pinned application layout
-* Recommended section spacing
-* All Apps positioning
-* Start Menu width
-* Start Menu height
-* Search window customization
+- Rounded Start Menu surfaces
+- Transparent and translucent backgrounds
+- Custom margins and spacing
+- Liquid Glass visual styling
 
-Current Start Menu dimensions are:
-
-```text
-Width: 800 px
-Height: 600 px
-```
+The final appearance depends on the Windows build and the installed mod version.
 
 ---
 
 # 9. Windows 11 File Explorer Styler
+
+This component customizes File Explorer to match the Liquid Glass appearance.
 
 ## Installation
 
@@ -367,35 +375,24 @@ Height: 600 px
 7. Open:
 
 ```text
-configs/Windows-11-File-Explorer-Styler/file-explorer-styler.yaml
+configs/Windows 11 File Explorer Styler/file-explorer-styler.yaml
 ```
 
 8. Copy the configuration.
 9. Paste it into the Windhawk configuration editor.
 10. Save the configuration.
-11. Restart/reload the mod.
+11. Restart/reload the mod or File Explorer.
 
-## Current customization
+## Current Customization
 
-The configuration styles:
+The configuration includes styling for:
 
-* Explorer background
-* Navigation bar
-* Main/details area
-* Thumbnail area
-* Command bar
-* Borders
-* Corner radius
-* Blur
-* Transparency
-
-The configuration uses:
-
-```text
-backgroundTranslucentEffectRegion: entireWindow
-```
-
-so the translucent effect is intended to cover the Explorer window.
+- File Explorer backgrounds
+- Navigation panel
+- Command bar
+- Translucent surfaces
+- Rounded UI elements
+- Consistent visual appearance
 
 ---
 
@@ -403,26 +400,31 @@ so the translucent effect is intended to cover the Explorer window.
 
 YASB is used as the custom Liquid Glass top bar.
 
-YASB is a highly configurable Windows status bar and provides Windows 10/11 installers for x64 and ARM64 systems. The official documentation also recommends Nerd Fonts for custom themes.
+It provides a customizable Windows status bar with widgets, system information, and custom CSS styling.
 
 ## Download
 
-Install [YASB](https://github.com/amnweb/yasb) using its [official release](https://github.com/amnweb/yasb/releases/tag/v2.0.6) or [installation documentation](https://github.com/amnweb/yasb/wiki/Installation).
+Install [YASB](https://github.com/amnweb/yasb) using its [official releases](https://github.com/amnweb/yasb/releases) or [installation documentation](https://github.com/amnweb/yasb/wiki/Installation).
 
-Repository:
+## Repository Configuration
 
 ```text
 configs/
-└── YASB/
+└── yasb/
     ├── config.yaml
     └── styles.css
 ```
 
 ## Font
 
-The project uses: `JetBrainsMonoNerdFontPropo-Regular.ttf`
+The project uses:
 
-Install the font from Repo:
+```text
+JetBrainsMonoNerdFontPropo-Regular.ttf
+```
+
+The font is included in:
+
 ```text
 assets/
 └── fonts/
@@ -436,49 +438,64 @@ Install the font before launching the final configuration if icons or text appea
 1. Install YASB.
 2. Start YASB once.
 3. Close YASB if necessary.
-4. Locate the YASB configuration directory. Default location `%AppData\spicetify\Themes`.
+4. Locate the YASB configuration directory.
 5. Back up the existing configuration.
 6. Copy this project's `config.yaml`.
 7. Copy this project's `styles.css`.
 8. Install the included font if it is not already installed.
 9. Start YASB again.
 
+The default YASB configuration directory on Windows is:
+
+```text
+%USERPROFILE%\.config\yasb
+```
+
+The final directory should contain:
+
+```text
+.config/
+└── yasb/
+    ├── config.yaml
+    └── styles.css
+```
 
 ## YASB Styling
 
 The included CSS controls:
 
-* Top bar transparency
-* Widget spacing
-* Rounded widget containers
-* Colors
-* Fonts
-* Workspace indicators
-* Weather
-* GitHub
-* System widgets
-* Power menu
-* Calendar
-* Wallpaper gallery
-* Taskbar widgets
+- Top bar transparency
+- Widget spacing
+- Rounded widget containers
+- Colors
+- Fonts
+- Workspace indicators
+- Weather
+- GitHub
+- System widgets
+- Power menu
+- Calendar
+- Wallpaper gallery
+- Taskbar widgets
 
 ---
 
-
 # 11. CEF Spotify Tweaks
+
+CEF Spotify Tweaks is used for additional Spotify-related customization through Windhawk.
 
 ## Installation
 
 1. Open Windhawk.
 2. Open **Mods**.
-3. Search for **Windows 11 File Explorer Styler**.
+3. Search for **CEF Spotify Tweaks**.
 4. Install the mod.
 5. Open **Settings**.
 6. Select **Textual mode**.
 7. Open:
 
 ```text
-configs/CEF-Spotify-Tweaks/Config.yaml
+configs/CEF-Spotify Tweaks/config.yaml
 ```
 
 8. Copy the configuration.
@@ -486,7 +503,7 @@ configs/CEF-Spotify-Tweaks/Config.yaml
 10. Save the configuration.
 11. Restart/reload the mod.
 
-Install the corresponding CEF Spotify Tweaks component, then apply the configuration from the repository.
+Install the corresponding CEF Spotify Tweaks component before applying the repository configuration.
 
 ---
 
@@ -494,13 +511,18 @@ Install the corresponding CEF Spotify Tweaks component, then apply the configura
 
 Spicetify is used to customize the Spotify desktop client.
 
-The official Spicetify [documentation](https://spicetify.app/docs/getting-started) provides Windows installation through PowerShell, Winget, Scoop, and Chocolatey.
+The repository contains two independent Spotify Liquid Glass appearances:
+
+1. Liquid Glass
+2. Misty Forest
+
+Both themes have their own `color.ini` and `user.css`.
 
 ## Install Spotify First
 
-Install the official [Spotify desktop client](https://download.scdn.co/SpotifySetup.exe) and log in.
+Install the official [Spotify Desktop Client](https://download.scdn.co/SpotifySetup.exe) and log in.
 
-Don't use Microsoft version. Spicetify won't work on Microsoft version
+**Important:** Use the official standalone Spotify Desktop installer rather than the Microsoft Store version.
 
 For a fresh installation, open Spotify and allow it to initialize before running Spicetify.
 
@@ -508,7 +530,7 @@ For a fresh installation, open Spotify and allow it to initialize before running
 
 ## Install Spicetify
 
-Use the official Spicetify installation method.
+Use the official [Spicetify installation documentation](https://spicetify.app/docs/getting-started).
 
 Windows PowerShell installation:
 
@@ -532,87 +554,260 @@ Run:
 spicetify -v
 ```
 
-Then:
+To check the current theme:
 
 ```powershell
 spicetify config current_theme
 ```
 
-To file path use:
-```
+To inspect the current Spicetify configuration:
+
+```powershell
 spicetify config
-``` 
-
-The expected theme configuration for this project is:
-
-```text
-marketplace
 ```
 
 ---
 
-## Spotify Files
+## Spotify Theme Files
 
-The repository contains:
+The repository contains two theme directories:
 
 ```text
 spotify/
-├── color.ini
-└── user.css
-```
-
-### color.ini
-
-This contains the Liquid Glass color palette.
-
-### user.css
-
-This contains the main visual customization:
-
-* Transparent structural layers
-* Glass top bar
-* Glass left sidebar
-* Glass right sidebar
-* Glass middle content
-* Glass bottom player
-* Transparent action/filter bar
-* Rounded cards
-* Glass borders
-* Card spacing
-* Recents spacing
-* Removal of unwanted circular overlays
-
----
-
-## Apply Spotify Customization
-
-Copy the theme files into the appropriate Spicetify theme/custom CSS location.
-
-After Installing spicetify the themes folder is created at the default location:
-```
-C:\...\...\AppData\Roaming\spicetify\Themes
-```
-Create a New folder inside Themes named `LiquidGlass`
-
-So it becomes:
-```
-C:\...\...\AppData\Roaming\spicetify\Themes\LiquidGlass
-```
-
-Now copy-paste both config files to `LiquidGlass`
-```
-C:\...\...\AppData\Roaming\spicetify\Themes\LiquidGlass
+│
+├── Liquid-Glass/
+│   ├── color.ini
+│   └── user.css
+│
+└── Misty-Forest/
     ├── color.ini
     └── user.css
 ```
 
-After copying the files, apply the configuration:
+### Liquid Glass
+
+Location:
+
+```text
+spotify/Liquid-Glass/
+```
+
+This theme provides:
+
+- Dark translucent interface
+- Glass top bar
+- Glass left sidebar
+- Glass right sidebar
+- Floating middle content
+- Glass bottom player
+- Transparent action/filter bar
+- Rounded cards and controls
+- Custom Spotify colors and spacing
+
+### Misty Forest
+
+Location:
+
+```text
+spotify/Misty-Forest/
+```
+
+This theme provides:
+
+- Forest-inspired green glass appearance
+- Mint-colored accents
+- Translucent interface panels
+- Enhanced background blur and saturation
+- Diagonal glass highlights
+- Wallpaper-coordinated appearance
+
+### color.ini
+
+Contains the color palette used by the corresponding Spotify theme.
+
+### user.css
+
+Contains the visual customization, including:
+
+- Transparent structural layers
+- Glass panels
+- Rounded controls
+- Borders and backgrounds
+- Button spacing
+- Track-list styling
+- Sidebar styling
+- Player styling
+- Hover behavior
+
+Each theme has its own independent files. Do not combine the two configurations into one theme folder.
+
+---
+
+## Apply the Liquid Glass Theme
+
+### 1. Locate the Spicetify Themes Directory
+
+The default location is:
+
+```text
+%APPDATA%\spicetify\Themes
+```
+
+Open it using File Explorer or PowerShell:
+
+```powershell
+explorer "$env:APPDATA\spicetify\Themes"
+```
+
+### 2. Create the Theme Folder
+
+Create:
+
+```text
+Liquid-Glass
+```
+
+The resulting path should be:
+
+```text
+%APPDATA%\spicetify\Themes\Liquid-Glass
+```
+
+### 3. Copy the Theme Files
+
+Copy the following files from this repository:
+
+```text
+spotify/Liquid-Glass/
+├── color.ini
+└── user.css
+```
+
+Paste them into:
+
+```text
+%APPDATA%\spicetify\Themes\Liquid-Glass/
+```
+
+The final structure should be:
+
+```text
+Themes/
+└── Liquid-Glass/
+    ├── color.ini
+    └── user.css
+```
+
+### 4. Activate the Theme
+
+Run:
+
+```powershell
+spicetify config current_theme Liquid-Glass
+```
+
+Then apply:
 
 ```powershell
 spicetify apply
 ```
 
-Restart Spotify after applying the configuration.
+Restart Spotify if necessary.
+
+---
+
+## Apply the Misty Forest Theme
+
+### 1. Create the Theme Folder
+
+Inside:
+
+```text
+%APPDATA%\spicetify\Themes
+```
+
+Create:
+
+```text
+Misty-Forest
+```
+
+### 2. Copy the Theme Files
+
+Copy:
+
+```text
+spotify/Misty-Forest/
+├── color.ini
+└── user.css
+```
+
+Paste them into:
+
+```text
+%APPDATA%\spicetify\Themes\Misty-Forest/
+```
+
+The final structure should be:
+
+```text
+Themes/
+└── Misty-Forest/
+    ├── color.ini
+    └── user.css
+```
+
+### 3. Activate the Theme
+
+Run:
+
+```powershell
+spicetify config current_theme Misty-Forest
+```
+
+Then apply:
+
+```powershell
+spicetify apply
+```
+
+Restart Spotify if necessary.
+
+---
+
+## Switching Between Spotify Themes
+
+Both variants can remain installed simultaneously.
+
+To switch to Liquid Glass:
+
+```powershell
+spicetify config current_theme Liquid-Glass
+spicetify apply
+```
+
+To switch to Misty Forest:
+
+```powershell
+spicetify config current_theme Misty-Forest
+spicetify apply
+```
+
+Only the selected theme is active at a time.
+
+### Optional: Development Workflow
+
+For theme development, you can edit the active theme's `user.css` directly.
+
+If you maintain a symbolic link from the Spicetify Themes directory to your repository, edits can be made directly in VS Code without copying files repeatedly.
+
+Spicetify also provides a watch command:
+
+```powershell
+spicetify watch
+```
+
+Use this from the active theme development directory when working with supported theme file changes.
 
 ---
 
@@ -620,19 +815,9 @@ Restart Spotify after applying the configuration.
 
 Spotify updates can overwrite or invalidate Spicetify modifications.
 
-The official Spicetify documentation recommends reapplying after Spotify updates:
+After a Spotify update, check Spicetify compatibility and reapply the modifications if required.
 
-```powershell
-spicetify backup apply
-```
-
-If required:
-
-```powershell
-spicetify update
-```
-
-If compatibility problems occur after a Spotify update, check the current Spicetify documentation before modifying the theme files.
+Use the official [Spicetify documentation](https://spicetify.app/docs/getting-started) for current recovery and backup instructions.
 
 ---
 
@@ -642,15 +827,15 @@ Fluent Flyouts provides customized Windows media/system flyouts and additional t
 
 ## Download
 
-Use the official [Fluent Flyouts](https://github.com/unchihugo/FluentFlyout) GitHub releases.
+Use the official [Fluent Flyouts GitHub repository](https://github.com/unchihugo/FluentFlyout).
 
-Install the [latest releases](https://github.com/unchihugo/FluentFlyout/releases/tag/v2.13.1) form the GitHub.
+Download the latest version from [GitHub Releases](https://github.com/unchihugo/FluentFlyout/releases).
 
-Repository configuration:
+## Repository Configuration
 
 ```text
 configs/
-└── Fluent-Flyouts/
+└── Fluent Flyouts/
     └── FluentFlyout_Settings.xml
 ```
 
@@ -664,27 +849,28 @@ configs/
 6. Replace/import the configuration from:
 
 ```text
-configs/Fluent-Flyouts/FluentFlyout_Settings.xml
+configs/Fluent Flyouts/FluentFlyout_Settings.xml
 ```
 
 7. Restart Fluent Flyouts.
 
-The current configuration enables features including:
+The current configuration includes features such as:
 
-* Media flyout
-* Media flyout blur
-* Acrylic media window
-* Acrylic Next Up window
-* Acrylic Lock Keys window
-* Taskbar widget
-* Taskbar widget blur
-* Taskbar widget controls
-* Taskbar visualizer
+- Media flyout
+- Media flyout blur
+- Acrylic media window
+- Acrylic Next Up window
+- Acrylic Lock Keys window
+- Taskbar widget
+- Taskbar widget blur
+- Taskbar widget controls
+- Taskbar visualizer
+
+Available settings may vary depending on the installed Fluent Flyouts version.
 
 ---
 
-
-# 14. Applying the Configuration
+# 14. Applying Updates
 
 After installing all components, restart the affected applications.
 
@@ -700,64 +886,62 @@ Recommended restart sequence:
 
 If the Windows shell does not update correctly, restart Windows.
 
+For Spotify theme changes, run:
+
+```powershell
+spicetify apply
+```
+
 ---
 
 # 15. Troubleshooting
 
-## Taskbar looks incorrect
+## Taskbar Looks Incorrect
 
 Check:
 
-* Windows 11 Taskbar Styler is enabled.
-* Taskbar Height and Icon Size is enabled.
-* The correct configuration was pasted.
-* Taskbar margins match the configured height.
-* Another taskbar customization is not overriding the styling.
+- Windows 11 Taskbar Styler is enabled.
+- Taskbar Height and Icon Size is enabled.
+- The correct configuration was pasted.
+- Taskbar margins match the configured height.
+- Another taskbar customization is not overriding the styling.
 
----
-
-## Start Menu is invisible or broken
+## Start Menu Is Invisible or Broken
 
 - Disable the Start Menu Styler mod and verify that the native Start Menu works.
-- Then check whether the current Windows build is compatible with the mod.
+- Check whether the current Windows build is compatible with the mod.
 - Windows UI mods can be affected by Windows updates and changes to internal UI targets.
 
----
-
-## File Explorer is opaque
+## File Explorer Is Opaque
 
 Check:
 
-* Translucent Windows is enabled.
-* File Explorer Styler is enabled.
-* `backgroundTranslucentEffectRegion` is set correctly.
-* No other Explorer customization is overriding the background.
-* File Explorer has been restarted.
+- Translucent Windows is enabled.
+- File Explorer Styler is enabled.
+- The configuration has been applied correctly.
+- No other Explorer customization is overriding the background.
+- File Explorer has been restarted.
 
----
-
-## YASB icons are missing
+## YASB Icons Are Missing
 
 Install:
 
 ```text
-JetBrainsMonoNerdFontPropo-Regular.ttf
+assets/fonts/JetBrainsMonoNerdFontPropo-Regular.ttf
 ```
 
 Then restart YASB.
 
 Also verify that the CSS font name matches the installed font.
 
----
-
-## Spotify is still opaque
+## Spotify Is Still Opaque
 
 Check:
 
 1. Spotify is fully closed.
 2. Spicetify is installed correctly.
-3. `user.css` is in the correct location.
-4. `color.ini` is in the correct theme location.
+3. `user.css` is in the correct theme folder.
+4. `color.ini` is in the correct theme folder.
 5. The correct theme is selected.
 6. Run:
 
@@ -769,39 +953,56 @@ spicetify apply
 
 If Spotify has recently updated, check Spicetify compatibility and reapply the modifications.
 
----
+## Spotify Theme Is Not Switching
 
-## Spotify transparency affects other applications
+Check the selected theme:
+
+```powershell
+spicetify config current_theme
+```
+
+For Liquid Glass:
+
+```powershell
+spicetify config current_theme Liquid-Glass
+spicetify apply
+```
+
+For Misty Forest:
+
+```powershell
+spicetify config current_theme Misty-Forest
+spicetify apply
+```
+
+Verify that the selected theme folder exists inside:
+
+```text
+%APPDATA%\spicetify\Themes
+```
+
+Also verify that the folder contains both `color.ini` and `user.css`.
+
+## Spotify Transparency Affects Other Applications
 
 The project uses both:
 
-```text
-Translucent Windows
-```
-
-and:
-
-```text
-Spotify user.css
-```
+- Translucent Windows
+- Spotify `user.css`
 
 The Translucent Windows configuration contains a Spotify-specific rule to prevent unwanted interaction with the general Windows transparency configuration.
 
 If another application is affected, review the Translucent Windows rules before changing the Spotify CSS.
 
----
-
-## Changes are not appearing
+## Changes Are Not Appearing
 
 Try:
 
-```text
 1. Save the configuration.
 2. Reload the Windhawk mod/application.
 3. Restart the affected application.
 4. Restart Explorer.
 5. Restart Windows if necessary.
-```
 
 For Spotify:
 
@@ -815,35 +1016,48 @@ spicetify apply
 
 Before modifying any existing configuration, create a backup.
 
-For Windhawk mods:
+## Windhawk Mods
 
 1. Open the affected mod.
 2. Open Settings.
 3. Save a copy of the current configuration.
 4. Disable the mod if necessary.
 
-For YASB:
+## YASB
+
+Back up:
 
 ```text
-Back up:
 config.yaml
 styles.css
 ```
 
-For Spotify:
+Restore your previous files in:
 
 ```text
-Back up:
+%USERPROFILE%\.config\yasb
+```
+
+## Spotify
+
+Back up the currently installed theme files.
+
+```text
 color.ini
 user.css
 ```
 
-For Fluent Flyouts:
+To restore the original appearance, select your previous Spicetify theme or restore your backed-up files.
+
+## Fluent Flyouts
+
+Back up:
 
 ```text
-Back up:
 FluentFlyout_Settings.xml
 ```
+
+Restore the previous settings file and restart Fluent Flyouts.
 
 If a configuration causes instability, disable the corresponding component first rather than removing the entire project.
 
@@ -851,33 +1065,59 @@ If a configuration causes instability, disable the corresponding component first
 
 # Repository Configuration Paths
 
-All configurations are organized under:
+All Windows configurations are organized under:
 
 ```text
 configs/
-├── CEF-Spotify-Tweaks/
-├── Fluent-Flyouts/
-├── Taskbar-Dock-Animation/
-├── Taskbar-Height-and-Icon-Size/
-├── Translucent-Windows/
-├── Windows-11-File-Explorer-Styler/
-├── Windows-11-Start-Menu-Styler/
-├── Windows-11-Taskbar-Styler/
-└── YASB/
+│
+├── CEF-Spotify Tweaks/
+│   └── config.yaml
+│
+├── Fluent Flyouts/
+│   └── FluentFlyout_Settings.xml
+│
+├── Taskbar Dock Animation/
+│   └── taskbar-dock-animation.yaml
+│
+├── Taskbar height and icon size/
+│   └── taskbar-icon-size.yaml
+│
+├── Translucent Windows/
+│   └── translucent-windows.yaml
+│
+├── Windows 11 File Explorer Styler/
+│   └── file-explorer-styler.yaml
+│
+├── Windows 11 Start Menu Styler/
+│   └── start-menu-styler.yaml
+│
+├── Windows 11 Taskbar Styler/
+│   └── taskbar-styler.yaml
+│
+└── yasb/
+    ├── config.yaml
+    └── styles.css
 ```
 
-Spotify-specific files are stored separately:
+Spotify themes are stored separately:
 
 ```text
 spotify/
-├── color.ini
-└── user.css
+│
+├── Liquid-Glass/
+│   ├── color.ini
+│   └── user.css
+│
+└── Misty-Forest/
+    ├── color.ini
+    └── user.css
 ```
 
 Visual resources are stored in:
 
 ```text
 assets/
+├── fonts/
 ├── previews/
 ├── screenshots/
 └── wallpapers/
@@ -891,17 +1131,17 @@ This project is a personal Windows customization configuration.
 
 The exact appearance may vary depending on:
 
-* Windows version
-* Windows theme
-* Display scaling
-* Font installation
-* Spotify version
-* Spicetify version
-* Windhawk version
-* Windhawk mod versions
-* YASB version
-* Fluent Flyouts version
-* Other installed Windows customization tools
+- Windows version
+- Windows theme
+- Display scaling
+- Font installation
+- Spotify version
+- Spicetify version
+- Windhawk version
+- Windhawk mod versions
+- YASB version
+- Fluent Flyouts version
+- Other installed Windows customization tools
 
 Do not assume that future versions of Windows or third-party applications will remain compatible with the current configurations.
 

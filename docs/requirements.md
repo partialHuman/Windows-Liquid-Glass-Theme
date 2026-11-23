@@ -1,7 +1,6 @@
 # Requirements
 
-This project combines several Windows customization tools and
-applications. Each component can be installed independently.
+This project combines several Windows customization tools and applications. Each component can be installed independently depending on the customization features you want to use.
 
 ## Core Requirements
 
@@ -16,40 +15,43 @@ applications. Each component can be installed independently.
 | Spotify CEF Tweaks | Windhawk + CEF Spotify Tweaks |
 | System Flyouts | Fluent Flyouts |
 | Top Bar | YASB |
-| Spotify Theme | Spicetify |
-
+| Spotify Theme | Spotify Desktop + Spicetify |
 
 ## Fonts
 
-YASB uses: `JetBrainsMonoNerdFontPropo-Regular.ttf`
+YASB uses:
+
+`JetBrainsMonoNerdFontPropo-Regular.ttf`
 
 The font is included in the repository:
+
 ```text
-configs/
-└── YASB/
+assets/
+└── fonts/
     └── JetBrainsMonoNerdFontPropo-Regular.ttf
 ```
-and is used by the YASB stylesheet.
-```text
+
+The font is used by the YASB stylesheet.
+
+```css
 font-family: "JetBrainsMono NFP";
 ```
+
+Install the font before applying the YASB configuration if it is not already available on your system.
 
 ## Windows
 
 The configurations in this repository are intended for Windows 11.
 
-Compatibility may depend on the Windows build and the version of each
-customization tool.
+Compatibility may depend on the Windows build and the version of each customization tool.
 
 ## Compatibility
 
-Windows Updates
+### Windows Updates
 
-Windows updates may change the internal UI structure used by
-Windhawk mods.
+Windows updates may change the internal UI structure used by Windhawk mods.
 
-As a result, a configuration that works on one Windows build may
-require modification on another build.
+As a result, a configuration that works on one Windows build may require modification on another build.
 
 If a Windhawk configuration stops working after a Windows update:
 
@@ -59,8 +61,7 @@ If a Windhawk configuration stops working after a Windows update:
 - Check the project's configuration for updated selectors.
 - Reapply the configuration only after confirming compatibility.
 
-
-## Spotify Updates
+### Spotify Updates
 
 Spotify updates can affect:
 
@@ -71,12 +72,35 @@ Spotify updates can affect:
 - Transparency
 - UI layout
 
-After a Spotify update, the Liquid Glass theme may require
-reapplication or modification.
+This repository includes two Spotify Liquid Glass theme variants:
+
+```text
+spotify/
+│
+├── Liquid-Glass/
+│   ├── color.ini
+│   └── user.css
+│
+└── Misty-Forest/
+    ├── color.ini
+    └── user.css
+```
+
+**Liquid Glass**
+
+A dark translucent Spotify interface featuring floating glass panels, rounded controls, subtle borders, and customized backgrounds.
+
+**Misty Forest**
+
+A forest-inspired Spotify appearance featuring green-tinted glass surfaces, mint accents, enhanced blur, and diagonal glass highlights.
+
+Each variant has its own independent `color.ini` and `user.css` configuration.
+
+After a Spotify update, either theme may require reapplication or modification.
 
 Check Spicetify compatibility before assuming that the CSS itself is broken.
 
-## YASB Updates
+### YASB Updates
 
 YASB updates may change:
 
@@ -89,7 +113,11 @@ Keep a backup of the previous configuration before updating YASB.
 
 ## Software Download Links
 
-[Windhawk Official website](https://windhawk.net/)
+### Windhawk
+
+[Windhawk Official Website](https://windhawk.net/)
+
+### YASB
 
 [YASB Official GitHub](https://github.com/amnweb/yasb)
 
@@ -97,22 +125,23 @@ Keep a backup of the previous configuration before updating YASB.
 
 [YASB Latest Release](https://github.com/amnweb/yasb/releases)
 
-[Spicetify Official website](https://spicetify.app/)
+### Spicetify
+
+[Spicetify Official Website](https://spicetify.app/)
 
 [Spicetify Installation Guide](https://spicetify.app/docs/getting-started)
+
+### Fluent Flyouts
 
 [Fluent Flyouts Official GitHub](https://github.com/unchihugo/FluentFlyout)
 
 [Fluent Flyouts Latest Release](https://github.com/unchihugo/FluentFlyout/releases)
 
-
 ## Important Notes
 
-This repository contains personal Windows customization
-configurations.
+This repository contains personal Windows customization configurations.
 
-The configurations are not official configurations for Windows,
-Windhawk, YASB, Spotify, Spicetify, or Fluent Flyouts.
+The configurations are not official configurations for Windows, Windhawk, YASB, Spotify, Spicetify, or Fluent Flyouts.
 
 Compatibility may change due to:
 
@@ -130,9 +159,6 @@ Always maintain a backup of your original configuration.
 
 Use these configurations at your own discretion.
 
-The author is not responsible for configuration conflicts,
-incompatibilities, unexpected UI behavior, application problems, or
-data loss resulting from third-party customization software.
+The author is not responsible for configuration conflicts, incompatibilities, unexpected UI behavior, application problems, or data loss resulting from third-party customization software.
 
-If a component causes problems, disable that component first and
-restore the backed-up configuration.
+If a component causes problems, disable that component first and restore the backed-up configuration.
