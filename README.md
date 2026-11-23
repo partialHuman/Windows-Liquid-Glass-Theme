@@ -7,11 +7,9 @@
 [![Fluent Flyouts](https://img.shields.io/badge/Fluent%20Flyouts-System%20UI-0078D4)](https://github.com/unchihugo/FluentFlyout)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-
-
 A Windows 11 customization setup focused on a consistent **Liquid Glass / translucent desktop experience**.
 
-This project combines Windhawk, YASB, Spicetify, Fluent Flyouts, and additional customization tools to create a unified glass-style interface across the Windows desktop, Taskbar, Start Menu, File Explorer, top bar, system flyouts, and Spotify.
+This project combines Windhawk, YASB, Spicetify, Fluent Flyouts, and additional customization tools to create a unified glass-style interface across the Windows desktop, Taskbar, Start Menu, File Explorer, custom top bar, system flyouts, and Spotify.
 
 ---
 
@@ -35,16 +33,31 @@ This project combines Windhawk, YASB, Spicetify, Fluent Flyouts, and additional 
 
 ![File Explorer Preview](assets/previews/file-explorer.png)
 
+### Navigation Panel
+
+![Navigation Panel Preview](assets/previews/navigation-pannel.png)
+
+### Notification Panel
+
+![Notification Panel Preview](assets/previews/notification%20pannel.png)
+
 ### Spotify
 
-![Spotify Preview](assets/previews/spotify.png)
+#### Liquid Glass
+
+A dark, translucent Spotify interface with floating glass panels, rounded controls, subtle borders, and a consistent dark appearance.
+
+![Spotify Liquid Glass Preview](assets/previews/spotify-liquid-glass.png)
+
+#### Misty Forest
+
+A forest-inspired Spotify appearance featuring green-tinted glass surfaces, mint accents, enhanced blur, and diagonal glass highlights.
+
+![Spotify Misty Forest Preview](assets/previews/spotify-misty-forest.png)
 
 ### YASB
 
 ![YASB Preview](assets/previews/yasb.png)
-
-> Replace the image filenames above with the actual files you add to
-> `assets/previews/`.
 
 ---
 
@@ -80,18 +93,28 @@ This project combines Windhawk, YASB, Spicetify, Fluent Flyouts, and additional 
 
 ## Spotify
 
-- Liquid Glass Spotify interface
-- Transparent main background
+Two independent Spotify appearance configurations are included.
+
+**Liquid Glass**
+- Dark translucent interface
 - Glass top bar
-- Glass left sidebar
-- Glass right sidebar
-- Glass middle content
+- Glass left and right sidebars
+- Floating middle content
 - Glass bottom player
 - Transparent filter/action bar
-- Rounded cards
-- Glass borders
-- Custom Spotify colors
-- Custom spacing and layout
+- Rounded cards and controls
+- Subtle glass borders
+- Custom Spotify colors, spacing, and layout
+
+**Misty Forest**
+- Forest-inspired green glass appearance
+- Mint-colored accents
+- Translucent interface panels
+- Enhanced background blur and saturation
+- Diagonal glass highlights
+- Wallpaper-coordinated appearance
+
+Each variant includes its own `color.ini` and `user.css`.
 
 ## Additional Effects
 
@@ -107,27 +130,29 @@ This project combines Windhawk, YASB, Spicetify, Fluent Flyouts, and additional 
 
 | Component | Tool | Configuration |
 |---|---|---|
-| Taskbar | Windows 11 Taskbar Styler | [`taskbar-styler.yaml`](configs/Windows-11-Taskbar-Styler/taskbar-styler.yaml) |
-| Start Menu | Windows 11 Start Menu Styler | [`start-menu-styler.yaml`](configs/Windows-11-Start-Menu-Styler/start-menu-styler.yaml) |
-| File Explorer | Windows 11 File Explorer Styler | [`file-explorer-styler.yaml`](configs/Windows-11-File-Explorer-Styler/file-explorer-styler.yaml) |
-| Windows transparency | Translucent Windows | [`translucent-windows.yaml`](configs/Translucent-Windows/translucent-windows.yaml) |
-| Taskbar sizing | Taskbar height and icon size | [`taskbar-icon-size.yaml`](configs/Taskbar-Height-and-Icon-Size/taskbar-icon-size.yaml) |
-| Taskbar animation | Taskbar Dock Animation | [`taskbar-dock-animation.yaml`](configs/Taskbar-Dock-Animation/taskbar-dock-animation.yaml) |
-| Top bar | YASB | [`config.yaml`](configs/YASB/config.yaml) / [`styles.css`](configs/YASB/styles.css) |
-| Spotify theme | Spicetify | [`color.ini`](spotify/color.ini) / [`user.css`](spotify/user.css) |
-| Spotify CEF | CEF Spotify Tweaks | [`config.yaml`](configs/CEF-Spotify-Tweaks/config.yaml) |
-| System flyouts | Fluent Flyouts | [`FluentFlyout_Settings.xml`](configs/Fluent-Flyouts/FluentFlyout_Settings.xml) |
+| Taskbar | Windows 11 Taskbar Styler | [`taskbar-styler.yaml`](configs/Windows%2011%20Taskbar%20Styler/taskbar-styler.yaml) |
+| Start Menu | Windows 11 Start Menu Styler | [`start-menu-styler.yaml`](configs/Windows%2011%20Start%20Menu%20Styler/start-menu-styler.yaml) |
+| File Explorer | Windows 11 File Explorer Styler | [`file-explorer-styler.yaml`](configs/Windows%2011%20File%20Explorer%20Styler/file-explorer-styler.yaml) |
+| Windows transparency | Translucent Windows | [`translucent-windows.yaml`](configs/Translucent%20Windows/translucent-windows.yaml) |
+| Taskbar sizing | Taskbar Height and Icon Size | [`taskbar-icon-size.yaml`](configs/Taskbar%20height%20and%20icon%20size/taskbar-icon-size.yaml) |
+| Taskbar animation | Taskbar Dock Animation | [`taskbar-dock-animation.yaml`](configs/Taskbar%20Dock%20Animation/taskbar-dock-animation.yaml) |
+| Top bar | YASB | [`config.yaml`](configs/yasb/config.yaml) / [`styles.css`](configs/yasb/styles.css) |
+| Spotify Liquid Glass | Spicetify | [`color.ini`](spotify/Liquid-Glass/color.ini) / [`user.css`](spotify/Liquid-Glass/user.css) |
+| Spotify Misty Forest | Spicetify | [`color.ini`](spotify/Misty-Forest/color.ini) / [`user.css`](spotify/Misty-Forest/user.css) |
+| Spotify CEF | CEF Spotify Tweaks | [`config.yaml`](configs/CEF-Spotify%20Tweaks/config.yaml) |
+| System flyouts | Fluent Flyouts | [`FluentFlyout_Settings.xml`](configs/Fluent%20Flyouts/FluentFlyout_Settings.xml) |
 
 ---
 
 # Documentation
+
 | Document | Description |
-|--|--|
-|[Installation Guide](docs/installation.md)|	Complete installation instructions|
-|[Requirements](docs/requirements.md)|	Software and system requirements|
-|[Configuration](docs/requirements.md)|Customization parameters and explanations|
-|[Troubleshooting](docs/troubleshooting.md)| Common problems and solutions|
-|[Credits](credits.md)| Third-party projects and attribution|
+|---|---|
+| [Installation Guide](docs/installation.md) | Installation instructions for the customization tools and configurations |
+| [Requirements](docs/requirements.md) | Software and system requirements |
+| [Configuration](docs/configuration.md) | Customization parameters and configuration explanations |
+| [Troubleshooting](docs/troubleshooting.md) | Common problems and solutions |
+| [Credits](docs/credits.md) | Third-party projects and attribution |
 
 ---
 
@@ -141,11 +166,9 @@ The project is designed primarily for:
 - Spotify Desktop
 - Spicetify
 
-Additional components are optional.
+Additional components are optional depending on the customization you want to apply.
 
-See the complete requirements:
-
-**[Requirements](docs/requirements.md)**
+See the complete [Requirements](docs/requirements.md).
 
 ---
 
@@ -153,24 +176,22 @@ See the complete requirements:
 
 The recommended installation order is:
 
-1. Install Windhawk
-2. Install Translucent Windows
-3. Install Windows 11 Taskbar Styler
-4. Install Taskbar Height and Icon Size
-5. Install Taskbar Dock Animation
-6. Install Windows 11 Start Menu Styler
-7. Install Windows 11 File Explorer Styler
-8. Install Fluent Flyouts
-9. Install YASB
-10. Install JetBrains Mono Nerd Font
-11. Install Spotify
-12. Install Spicetify
-13. Apply the Spotify Liquid Glass configuration
-14. Install CEF Spotify Tweaks
+1. Install Windhawk.
+2. Install Translucent Windows.
+3. Install Windows 11 Taskbar Styler.
+4. Install Taskbar Height and Icon Size.
+5. Install Taskbar Dock Animation.
+6. Install Windows 11 Start Menu Styler.
+7. Install Windows 11 File Explorer Styler.
+8. Install Fluent Flyouts.
+9. Install YASB.
+10. Install JetBrains Mono Nerd Font.
+11. Install Spotify.
+12. Install Spicetify.
+13. Select and apply a Spotify theme variant.
+14. Install CEF Spotify Tweaks.
 
-For the complete installation procedure:
-
-**[Installation Guide](docs/installation.md)**
+For detailed instructions, see the [Installation Guide](docs/installation.md).
 
 ---
 
@@ -178,39 +199,30 @@ For the complete installation procedure:
 
 ## Windhawk
 
-[Official website](https://windhawk.net/)
+[Official Website](https://windhawk.net/)
 
-Windhawk is used for the Windows UI modifications in this project.
-
----
+Windhawk is used for Windows UI modifications, including Taskbar, Start Menu, File Explorer, and other system customization components.
 
 ## YASB
 
-YASB [Official GitHub](https://github.com/amnweb/yasb)
+- [Official GitHub Repository](https://github.com/amnweb/yasb)
+- [Installation Guide](https://github.com/amnweb/yasb/wiki/Installation)
 
-YASB [Installation](https://github.com/amnweb/yasb/wiki/Installation) guide
-
-YASB provides the custom top bar.
-
----
+YASB provides the customizable desktop top bar and widget system.
 
 ## Spicetify
 
-Spicetify [Official website](https://spicetify.app/)
+- [Official Website](https://spicetify.app/)
+- [Installation Guide](https://spicetify.app/docs/getting-started)
 
-Spicetify [Installation](https://spicetify.app/docs/getting-started) guide
-
-Spicetify provides the Spotify customization framework.
-
----
+Spicetify provides the Spotify customization framework used by both Spotify theme variants.
 
 ## Fluent Flyouts
 
-Fluent Flyouts [Official GitHub](https://github.com/unchihugo/FluentFlyout)
+- [Official GitHub Repository](https://github.com/unchihugo/FluentFlyout)
+- [Latest Releases](https://github.com/unchihugo/FluentFlyout/releases)
 
-Fluent Flyouts Latest [Releases](https://github.com/unchihugo/FluentFlyout/releases)
-
-Fluent Flyouts provides customized Windows system/media flyouts.
+Fluent Flyouts provides customized Windows system and media flyouts.
 
 ---
 
@@ -270,8 +282,12 @@ Fluent Flyouts provides customized Windows system/media flyouts.
     │   ├── 📄 requirements.md
     │   └── 📄 troubleshooting.md
     ├── 📁 spotify/
-    │   ├── 📄 color.ini
-    │   └── 🎨 user.css
+    │   ├── 📁 Liquid-Glass/
+    │   │   ├── 🎨 color.ini
+    │   │   └── 📄 user.css
+    │   └── 📁 Misty-Forest/
+    │       ├── 🎨 color.ini
+    │       └── 📄 user.css
     ├── 📄 .gitignore
     ├── 📄 credits.md
     ├── 📄 LICENSE
@@ -284,10 +300,11 @@ Fluent Flyouts provides customized Windows system/media flyouts.
 
 # Credits
 
-This project uses and builds upon several third-party tools and
-projects.
+This project uses and builds upon several third-party tools and projects.
 
-See: [Credits & Attribution](credits.md)
+See [Credits & Attribution](docs/credits.md).
+
+---
 
 # Disclaimer
 
@@ -303,11 +320,8 @@ It is not officially affiliated with or endorsed by:
 - Fluent Flyouts
 - Other third-party projects used by this setup
 
-Windows, Windows 11, Spotify, and other product names are trademarks
-of their respective owners.
+> Windows, Windows 11, Spotify, and other product names are trademarks of their respective owners.
 
-Use third-party customization tools at your own discretion.
+>Use third-party customization tools at your own discretion.
 
-Always maintain a backup of your original configurations.
-
----
+>Always maintain a backup of your original configurations.
