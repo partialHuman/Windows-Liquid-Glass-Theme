@@ -4,6 +4,19 @@ All notable changes to Windows Liquid Glass Theme are documented in this file.
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-24
+
+### Added
+- Visible mint-accented keyboard focus indicators for interactive controls.
+- Keyboard-focus feedback for Spotify track rows and cards.
+- Selected-track visual treatment.
+- Subtle press feedback for frequently used buttons.
+- Reduced-motion support respecting the operating system preference.
+
+### Improved
+- Interaction consistency across navigation, cards, track lists, and action controls.
+- Keyboard accessibility while preserving the existing Misty Forest glass appearance.
+
 ## [1.0.0] - 2026-11-24
 
 ### Added
