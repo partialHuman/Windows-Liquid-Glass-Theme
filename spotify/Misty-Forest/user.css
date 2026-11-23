@@ -1,0 +1,850 @@
+/* =========================================================
+   WINDOWS LIQUID GLASS — SPOTIFY / SPICETIFY
+   MISTY FOREST • true liquid-glass edition
+
+   What makes it "liquid glass" here:
+   1. Translucent green-tinted fill (lower alpha than before)
+   2. A soft diagonal SHEEN gradient across every panel
+   3. Bright RIM light on the top-left edge, faint on the
+      bottom-right, like light catching a glass edge
+   4. Light glass TILES/cards (lighter than the panel behind
+      them) instead of dark slabs
+   5. Strong blur + saturation, mint gradient on sliders
+
+   Readability over the bright fog is protected with a soft
+   text-shadow instead of heavy opaque tint.
+
+   TUNING (section 0):
+   --panel-*   alpha = how see-through each panel is
+   --sheen     shine strength (raise the .xx numbers)
+   --rim       edge highlight strength
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   0. THEME TOKENS
+   --------------------------------------------------------- */
+:root {
+    --gap: 8px;
+    --radius: 22px;
+
+    /* Green glass fill. Lower alpha = more transparent. */
+    --panel-top:    rgba(9, 44, 25, 0.5);
+    --panel-nav:    rgba(9, 44, 25, 0.52);
+    --panel-main:   rgba(9, 44, 25, 0.48);
+    --panel-right:  rgba(9, 44, 25, 0.52);
+    --panel-player: rgba(9, 44, 25, 0.56);
+
+    /* Diagonal shine: bright top-left, soft glints elsewhere. */
+    --sheen: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.17) 0%,
+        rgba(255, 255, 255, 0.05) 26%,
+        rgba(255, 255, 255, 0.00) 50%,
+        rgba(255, 255, 255, 0.03) 76%,
+        rgba(255, 255, 255, 0.09) 100%
+    );
+
+    /* Light tiles / pills that sit ON the panels. */
+    --glass-tile:        rgba(200, 245, 225, 0.10);
+    --glass-tile-hover:  rgba(200, 245, 225, 0.18);
+    --glass-card:        rgba(200, 245, 225, 0.09);
+    --glass-card-hover:  rgba(200, 245, 225, 0.17);
+    --glass-section:     rgba(200, 245, 225, 0.08);
+    --glass-field:       rgba(8, 28, 23, 0.34);
+    --glass-chip:        rgba(200, 245, 225, 0.13);
+    --glass-chip-hover:  rgba(200, 245, 225, 0.22);
+    --glass-hover:       rgba(210, 255, 235, 0.14);
+
+    --glass-blur: 25px;
+    --glass-sat:  180%;
+
+    --glass-border:      rgba(225, 250, 235, 0.26);
+    --glass-border-soft: rgba(225, 250, 235, 0.16);
+    --glass-accent: #a9e6c3;
+    --glass-text:   #f6fbf7;
+    --glass-muted:  #c6d9ce;
+
+    /* Edge light: strong top-left, faint bottom-right, soft inner glow. */
+    --rim:
+        inset 1.5px 1.5px 1px -0.5px rgba(255, 255, 255, 0.55),
+        inset -1px -1px 1px -0.5px rgba(255, 255, 255, 0.20),
+        inset 0 0 26px rgba(190, 240, 215, 0.07);
+
+    /* Dark hairline outside keeps the edge visible on pale fog. */
+    --glass-shadow:
+        0 0 0 1px rgba(2, 12, 9, 0.34),
+        0 16px 40px rgba(0, 0, 0, 0.28),
+        var(--rim);
+
+    --glass-text-shadow: 0 1px 3px rgba(0, 12, 8, 0.45);
+
+    --topbar-h: 64px;
+    --playerbar-h: 90px;
+}
+
+/* ---------------------------------------------------------
+   1. SPOTIFY ENCORE SURFACE TOKENS
+   "tinted" = tiles on Home (Liked Songs etc.). Now light glass.
+   "elevated" = menus/popovers. Kept fairly solid for legibility.
+   --------------------------------------------------------- */
+:root,
+.encore-dark-theme,
+.encore-base-set {
+    --background-base: transparent !important;
+    --background-highlight: rgba(210, 255, 235, 0.10) !important;
+    --background-press: rgba(210, 255, 235, 0.15) !important;
+    --background-elevated-base: rgba(14, 42, 35, 0.84) !important;
+    --background-elevated-highlight: rgba(210, 255, 235, 0.14) !important;
+    --background-elevated-press: rgba(210, 255, 235, 0.18) !important;
+    --background-tinted-base: rgba(200, 245, 225, 0.10) !important;
+    --background-tinted-highlight: rgba(200, 245, 225, 0.17) !important;
+    --background-tinted-press: rgba(200, 245, 225, 0.22) !important;
+    --essential-base: #ffffff !important;
+}
+
+.Root {
+    background: transparent !important;
+}
+
+html,
+body,
+#main,
+.Root__top-container,
+.main-view-container,
+.main-view-container__scroll-node,
+.main-view-container__scroll-node-child,
+.main-topBar-background,
+.main-actionBar-ActionBar,
+.main-entityHeader-background,
+.main-entityHeader-backgroundColor,
+.main-entityHeader-overlay,
+.under-main-view,
+.main-home-homeHeader {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+.Root__top-container {
+    padding: 0 !important;
+}
+
+/* ---------------------------------------------------------
+   2. SHARED GLASS PANEL BEHAVIOUR
+   Fill colour is set per panel below; sheen is layered on top
+   of it as a second background.
+   --------------------------------------------------------- */
+.main-topBar-container,
+.main-globalNav-container,
+.main-globalNav-globalNav,
+.Root__globalNav,
+.Root__nav-bar,
+.main-navBar-navBar,
+.Root__right-sidebar,
+.Root__main-view,
+.main-nowPlayingBar-container {
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: var(--glass-shadow) !important;
+    color: var(--glass-text);
+    text-shadow: var(--glass-text-shadow);
+}
+
+/* ---------------------------------------------------------
+   3. TOP NAVIGATION ISLAND
+   --------------------------------------------------------- */
+.main-topBar-container,
+.main-globalNav-container,
+.main-globalNav-globalNav,
+.Root__globalNav {
+    background: var(--sheen), var(--panel-top) !important;
+    margin: var(--gap) var(--gap) 0 !important;
+    border-radius: var(--radius) !important;
+    overflow: hidden !important;
+}
+
+.main-topBar-container > *,
+.main-globalNav-container > *,
+.main-globalNav-globalNav > *,
+.Root__globalNav > * {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* Round glass buttons in the top bar (home, cart, avatar ring...) */
+.main-topBar-container button {
+    border-radius: 16px !important;
+    background-color: var(--glass-chip) !important;
+    border: 1px solid var(--glass-border-soft) !important;
+    box-shadow: inset 1px 1px 1px -0.5px rgba(255, 255, 255, 0.40) !important;
+}
+
+/* Search pill: darker "well" so typed text pops. */
+.x-searchInput-searchInputInput {
+    background: var(--glass-field) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 18px !important;
+    box-shadow:
+        inset 0 2px 6px rgba(0, 0, 0, 0.22),
+        inset 1px 1px 1px -0.5px rgba(255, 255, 255, 0.30) !important;
+}
+
+/* ---------------------------------------------------------
+   4. LEFT LIBRARY / NAVIGATION ISLAND
+   --------------------------------------------------------- */
+.Root__nav-bar,
+.main-navBar-navBar {
+    background: var(--sheen), var(--panel-nav) !important;
+    margin: var(--gap) 0 var(--gap) var(--gap) !important;
+    border-radius: var(--radius) !important;
+    overflow: hidden !important;
+}
+
+.Root__nav-bar > *,
+.main-navBar-navBar > * {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+.main-yourLibraryX-libraryContainer {
+    background: transparent !important;
+    color: var(--glass-text) !important;
+}
+
+.main-navBar-navBarLink,
+.main-navBar-navBarLinkActive {
+    border-radius: 12px !important;
+    transition: background 0.2s ease !important;
+}
+
+.main-navBar-navBarLink:hover {
+    background: var(--glass-hover) !important;
+}
+
+.main-navBar-navBarLinkActive {
+    background: rgba(210, 255, 235, 0.16) !important;
+}
+
+/* ---------------------------------------------------------
+   5. RIGHT SIDEBAR / NOW PLAYING VIEW
+   --------------------------------------------------------- */
+.Root__right-sidebar {
+    background: var(--sheen), var(--panel-right) !important;
+    margin: var(--gap) var(--gap) var(--gap) 0 !important;
+    border-radius: var(--radius) !important;
+    overflow: hidden !important;
+}
+
+.Root__right-sidebar > div {
+    background-color: transparent !important;
+}
+
+.main-nowPlayingView-section {
+    background: var(--glass-section) !important;
+    border: 1px solid var(--glass-border-soft) !important;
+    border-radius: 18px !important;
+    box-shadow: inset 1px 1px 1px -0.5px rgba(255, 255, 255, 0.30) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
+.Root__right-sidebar hr,
+.Root__right-sidebar [class*="divider"],
+.Root__right-sidebar [class*="Divider"] {
+    border-color: rgba(225, 250, 235, 0.10) !important;
+    box-shadow: none !important;
+}
+
+/* ---------------------------------------------------------
+   6. BOTTOM PLAYER ISLAND
+   --------------------------------------------------------- */
+.Root__now-playing-bar {
+    background: transparent !important;
+}
+
+.main-nowPlayingBar-container {
+    background: var(--sheen), var(--panel-player) !important;
+    margin: 0 var(--gap) var(--gap) !important;
+    border-radius: var(--radius) !important;
+}
+
+/* Mint gradient on the progress / volume sliders. */
+.x-progressBar-fillColor,
+.progress-bar__slider + * [class*="fillColor"] {
+    background-image: linear-gradient(90deg, #7fd6a8, #c9f7de) !important;
+}
+
+/* ---------------------------------------------------------
+   7. HOME / ACTION BAR BACKGROUNDS
+   --------------------------------------------------------- */
+.main-home-homeHeader,
+.main-actionBarBackground-background,
+.main-actionBar-ActionBarBackground,
+div[class*="actionBar-ActionBarBackground"],
+div[class*="ActionBarBackground"] {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+.main-actionBar-ActionBar,
+.main-actionBarBackground-background,
+.main-actionBar-ActionBarBackground {
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+}
+
+/* Filter chips (All / Music / Podcasts / Audiobooks) */
+.main-actionBar-ActionBar button,
+.main-actionBar-ActionBar [role="button"] {
+    border-radius: 999px !important;
+    transition: background 0.18s ease, border-color 0.18s ease !important;
+}
+
+.main-actionBar-ActionBar button {
+    color: #f2faf4 !important;
+    background-color: var(--glass-chip) !important;
+    border: 1px solid var(--glass-border-soft) !important;
+    box-shadow: inset 1px 1px 1px -0.5px rgba(255, 255, 255, 0.45) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+.main-actionBar-ActionBar button:hover {
+    background-color: var(--glass-chip-hover) !important;
+}
+
+/* Selected chip: bright frosted white with dark text. */
+.main-actionBar-ActionBar button[aria-checked="true"] {
+    color: #0d241b !important;
+    text-shadow: none !important;
+    background-color: rgba(240, 255, 246, 0.92) !important;
+    border-color: rgba(255, 255, 255, 0.80) !important;
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+/* ---------------------------------------------------------
+   8. MAIN CONTENT ISLAND
+   Most transparent panel so the forest shows through.
+   --------------------------------------------------------- */
+.Root__main-view {
+    background: var(--sheen), var(--panel-main) !important;
+    margin: var(--gap) var(--gap) var(--gap) 0 !important;
+    border-radius: var(--radius) !important;
+    overflow: hidden !important;
+}
+
+.main-view-container,
+.main-view-container__scroll-node,
+.main-view-container__scroll-node-child {
+    background-color: transparent !important;
+}
+
+.main-view-container__scroll-node-child {
+    padding-top: var(--gap) !important;
+    padding-bottom: var(--gap) !important;
+    box-sizing: border-box !important;
+}
+
+/* ---------------------------------------------------------
+   9. HOME TILES / PLAYLIST CARDS
+   --------------------------------------------------------- */
+.main-card-card {
+    background: var(--glass-card) !important;
+    border: 1px solid var(--glass-border-soft) !important;
+    border-radius: 18px !important;
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.16),
+        inset 1px 1px 1px -0.5px rgba(255, 255, 255, 0.40) !important;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease !important;
+}
+
+.main-card-card:hover {
+    background: var(--glass-card-hover) !important;
+    border-color: rgba(225, 250, 235, 0.32) !important;
+    transform: translateY(-2px);
+}
+
+/* Hide only the small metadata/source badges on artwork. */
+[class*="cardImage-metadataIcon"],
+[class*="card-badge"],
+[class*="Badge-badge"],
+[class*="sourceIcon"],
+[class*="metadataIcon"] {
+    display: none !important;
+}
+
+/* ---------------------------------------------------------
+   10. TRACK LIST HEADER / COLUMN LABELS
+   --------------------------------------------------------- */
+.main-trackList-trackListHeader {
+    box-sizing: border-box !important;
+    border-radius: 14px !important;
+}
+
+.main-trackList-trackListHeaderRow {
+    border-bottom: 1px solid rgba(225, 250, 235, 0.14) !important;
+}
+
+.main-trackList-trackListHeaderRow > [aria-colindex="5"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    padding-left: 0 !important;
+    padding-right: 40px !important;
+}
+
+.main-trackList-trackListHeaderRow > [aria-colindex="5"] button,
+.main-trackList-trackListHeaderRow > [aria-colindex="5"] svg {
+    margin: 0 !important;
+}
+
+.main-trackList-trackListHeader button {
+    min-height: 28px !important;
+    padding: 4px 10px !important;
+    border-radius: 10px !important;
+    color: #f2faf4 !important;
+    background-color: var(--glass-chip) !important;
+    border: 1px solid var(--glass-border-soft) !important;
+    box-shadow: inset 1px 1px 1px -0.5px rgba(255, 255, 255, 0.40) !important;
+}
+
+.main-trackList-trackListHeader button:hover {
+    background-color: var(--glass-chip-hover) !important;
+    border-color: rgba(225, 250, 235, 0.30) !important;
+}
+
+.main-trackList-trackListHeader button span {
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.main-trackList-trackListHeader svg {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+
+button[aria-label*="Recently added"],
+button[title*="Recently added"] {
+    min-height: 28px !important;
+    padding: 4px 12px !important;
+    border-radius: 999px !important;
+    color: #f2faf4 !important;
+    background-color: var(--glass-chip) !important;
+    border: 1px solid var(--glass-border-soft) !important;
+    box-shadow: inset 1px 1px 1px -0.5px rgba(255, 255, 255, 0.40) !important;
+}
+
+/* ---------------------------------------------------------
+   11. TRACK ROWS / ACTION BUTTONS
+   --------------------------------------------------------- */
+.main-trackList-trackListRow,
+.main-trackList-trackListHeader {
+    color: var(--glass-text) !important;
+}
+
+.main-trackList-trackListRow {
+    border-radius: 12px !important;
+}
+
+.main-trackList-trackListRow:hover {
+    background: rgba(210, 255, 235, 0.12) !important;
+}
+
+.main-trackList-trackListRow [class*="secondary"],
+.main-trackList-trackListRow [class*="subtitle"],
+.main-trackList-trackListHeader [class*="secondary"] {
+    color: var(--glass-muted) !important;
+}
+
+.main-trackList-trackListRow .main-trackList-trackListRowPlayButton,
+.main-trackList-trackListRow [class*="trackListRowPlayButton"] {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.15s ease !important;
+}
+
+.main-trackList-trackListRow:hover .main-trackList-trackListRowPlayButton,
+.main-trackList-trackListRow:focus-within .main-trackList-trackListRowPlayButton,
+.main-trackList-trackListRow:hover [class*="trackListRowPlayButton"],
+.main-trackList-trackListRow:focus-within [class*="trackListRowPlayButton"] {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.main-trackList-trackListRow .main-trackList-rowSectionEnd button,
+.main-trackList-trackListRow .main-trackList-rowSectionEnd [role="button"] {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Round glass buttons for icon-only row controls. */
+.main-trackList-trackListRow .main-trackList-rowSectionEnd button:has(> svg),
+.main-trackList-trackListRow .main-trackList-rowSectionEnd button:has(> span:empty) {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    background: var(--glass-chip) !important;
+    border: 1px solid var(--glass-border-soft) !important;
+    box-shadow: inset 1px 1px 1px -0.5px rgba(255, 255, 255, 0.45) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.main-trackList-trackListRow .main-trackList-rowSectionEnd button:has(> svg):hover {
+    background: var(--glass-chip-hover) !important;
+    border-color: rgba(225, 250, 235, 0.34) !important;
+}
+
+.main-trackList-trackListRow .main-trackList-rowSectionEnd button svg {
+    width: 18px !important;
+    height: 18px !important;
+    margin: 0 !important;
+}
+
+/* ---------------------------------------------------------
+   12. CONTEXT MENUS (right-click, columns menu)
+   Frosted glass instead of a flat dark box.
+   --------------------------------------------------------- */
+.main-contextMenu-menu,
+.main-contextMenu-menuItem ~ * {
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat)) !important;
+}
+
+.main-contextMenu-menu {
+    background: var(--sheen), rgba(14, 42, 35, 0.80) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: 16px !important;
+    box-shadow:
+        0 18px 44px rgba(0, 0, 0, 0.40),
+        var(--rim) !important;
+}
+
+/* Columns menu checkboxes: keep them full-width rows. */
+.main-contextMenu-menuItem button[role="menuitemcheckbox"],
+.main-contextMenu-menu button[role="menuitemcheckbox"],
+button[role="menuitemcheckbox"][aria-label="Album"],
+button[role="menuitemcheckbox"][aria-label="Duration"] {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 44px !important;
+    max-height: none !important;
+    padding: 0 16px !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+}
+
+button[role="menuitemcheckbox"]::before,
+button[role="menuitemcheckbox"]::after {
+    box-shadow: none !important;
+}
+
+button[role="menuitemcheckbox"] [class*="checkbox"],
+button[role="menuitemcheckbox"] [class*="Checkbox"] {
+    margin: 0 !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* ---------------------------------------------------------
+   13. ADD TO PLAYLIST BUTTON
+   --------------------------------------------------------- */
+.main-trackList-trackListRow button[aria-label="Add to Playlist"],
+.main-trackList-rowSectionEnd button[aria-label="Add to Playlist"] {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    max-width: 34px !important;
+    max-height: 34px !important;
+    padding: 0 !important;
+    margin: 0 3px !important;
+    border-radius: 50% !important;
+    background: var(--glass-chip) !important;
+    border: 1px solid var(--glass-border-soft) !important;
+    box-shadow: inset 1px 1px 1px -0.5px rgba(255, 255, 255, 0.45) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(130%) !important;
+    backdrop-filter: blur(10px) saturate(130%) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: background 0.18s ease, border-color 0.18s ease !important;
+}
+
+.main-trackList-trackListRow button[aria-label="Add to Playlist"]:hover,
+.main-trackList-rowSectionEnd button[aria-label="Add to Playlist"]:hover {
+    background: var(--glass-chip-hover) !important;
+    border-color: rgba(225, 250, 235, 0.34) !important;
+}
+
+.main-trackList-trackListRow button[aria-label="Add to Playlist"] svg,
+.main-trackList-rowSectionEnd button[aria-label="Add to Playlist"] svg {
+    width: 18px !important;
+    height: 18px !important;
+    margin: 0 !important;
+}
+
+/* ---------------------------------------------------------
+   14. ENTITY HEADER WIDTH FIX
+   --------------------------------------------------------- */
+.main-entityHeader-container,
+.main-entityHeader-headerText,
+[class*="entityHeader-container"],
+[class*="entityHeader-headerText"] {
+    box-sizing: border-box !important;
+}
+
+/* ---------------------------------------------------------
+   15. ACCENT POLISH
+   --------------------------------------------------------- */
+.main-trackList-trackListHeader svg,
+.main-trackList-trackListHeader button:hover svg {
+    color: var(--glass-accent) !important;
+}
+
+/* =========================================================
+   16. FIXES
+   16a. Stray glass bar floating over the playlist header
+   16b. Solid colour block behind the play/shuffle row
+   16c. Tall "pill" icon buttons in the play/shuffle row
+   ========================================================= */
+
+/* 16a. The sticky bar INSIDE the main view (shows the playlist
+   title when you scroll) was being styled as a glass island by
+   mistake. Make it invisible again; only the global top bar
+   keeps the island look. */
+.Root__main-view .main-topBar-container {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+    text-shadow: none !important;
+}
+
+/* 16b. Spotify tints the area behind the play/shuffle row (and the
+   chips below it) with a colour taken from the cover art: green for
+   Liked Songs, red for "idk", blue for "Fresh Finds Dance".
+   Strip that tint so the glass shows through instead. */
+.Root__main-view,
+.Root__main-view * {
+    --background-color: transparent !important;
+    --background-noise: none !important;
+}
+
+.Root__main-view [class*="ackground" i]:not(button):not(img):not([class*="main-card"]):not([class*="progress" i]),
+.Root__main-view [class*="ackground" i]:not(button):not(img):not([class*="main-card"]):not([class*="progress" i])::before,
+.Root__main-view [class*="ackground" i]:not(button):not(img):not([class*="main-card"]):not([class*="progress" i])::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+.Root__main-view [data-testid="playlist-page"],
+.Root__main-view [data-testid="album-page"],
+.Root__main-view [data-testid="artist-page"],
+.Root__main-view [data-testid="collection-page"],
+.Root__main-view .main-view-container__scroll-node-child section,
+.Root__main-view .main-view-container__scroll-node-child main,
+.Root__main-view .main-actionBar-ActionBar,
+.Root__main-view .main-actionBar-ActionBarRow {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+/* 16c. Icon buttons in the action row were stretched to the full
+   height of the row (tall pills). Centre them so they stay round. */
+.main-actionBar-ActionBarRow,
+[class*="ActionBarRow" i] {
+    align-items: center !important;
+}
+
+.main-actionBar-ActionBarRow > *,
+.main-actionBar-ActionBarRow button,
+[class*="ActionBarRow" i] > *,
+[class*="ActionBarRow" i] button {
+    align-self: center !important;
+}
+
+
+/* =========================================================
+   17. FIXES (round 2)
+   17a. Green band left behind the play/shuffle row
+   17b. The 5 round action buttons: same size, same shape
+   17c. Right sidebar: dark block overlapping the Lyrics card
+   ========================================================= */
+
+/* 17a. The band is the glass blur + saturation I put on the action
+   bar. It tints that strip differently from the panel around it.
+   Remove the blur there so the row matches the rest of the panel. */
+.Root__main-view .main-actionBar-ActionBar,
+.Root__main-view [class*="ActionBar" i],
+.Root__main-view [class*="ackground" i]:not(button):not(img) {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
+/* 17b. Cover thumbnail, shuffle, saved (check), download, "...":
+   all 40 x 40 circles, centred in the row. */
+.main-actionBar-ActionBar button[aria-label*="huffle" i],
+.main-actionBar-ActionBar button[aria-label*="ibrary" i],
+.main-actionBar-ActionBar button[aria-label*="ownload" i],
+.main-actionBar-ActionBar button[aria-label*="ore options" i],
+.main-actionBar-ActionBar button:has(img),
+.main-actionBar-ActionBar [role="button"]:has(img),
+[class*="ActionBarRow" i] button[aria-label*="huffle" i],
+[class*="ActionBarRow" i] button[aria-label*="ibrary" i],
+[class*="ActionBarRow" i] button[aria-label*="ownload" i],
+[class*="ActionBarRow" i] button[aria-label*="ore options" i],
+[class*="ActionBarRow" i] button:has(img) {
+    box-sizing: border-box !important;
+    flex: 0 0 40px !important;
+    width: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    align-self: center !important;
+    overflow: hidden !important;
+    background: var(--glass-chip) !important;
+    border: 1px solid var(--glass-border-soft) !important;
+    box-shadow: inset 1px 1px 1px -0.5px rgba(255, 255, 255, 0.45) !important;
+    text-shadow: none !important;
+}
+
+.main-actionBar-ActionBar button[aria-label*="huffle" i]:hover,
+.main-actionBar-ActionBar button[aria-label*="ibrary" i]:hover,
+.main-actionBar-ActionBar button[aria-label*="ownload" i]:hover,
+.main-actionBar-ActionBar button[aria-label*="ore options" i]:hover,
+.main-actionBar-ActionBar button:has(img):hover {
+    background: var(--glass-chip-hover) !important;
+    border-color: rgba(225, 250, 235, 0.34) !important;
+}
+
+/* Cover thumbnail fills the circle. */
+.main-actionBar-ActionBar button:has(img) img,
+.main-actionBar-ActionBar [role="button"]:has(img) img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+}
+
+/* Icons stay centred and a consistent size. */
+.main-actionBar-ActionBar button[aria-label*="huffle" i] svg,
+.main-actionBar-ActionBar button[aria-label*="ibrary" i] svg,
+.main-actionBar-ActionBar button[aria-label*="ownload" i] svg,
+.main-actionBar-ActionBar button[aria-label*="ore options" i] svg {
+    margin: 0 !important;
+}
+
+/* 17c. Right sidebar. Strip the opaque dark panels Spotify paints
+   from the artwork colour, and lift the section cards above them. */
+.Root__right-sidebar [class*="ackground" i]:not(button):not(img),
+.Root__right-sidebar [class*="ackground" i]:not(button):not(img)::before,
+.Root__right-sidebar [class*="ackground" i]:not(button):not(img)::after,
+.Root__right-sidebar [style*="background-color"]:not(button):not(img):not(svg):not(path) {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
+/* Re-apply the glass look to the cards themselves (placed after the
+   strip above so it wins), and keep them on top with a clear gap. */
+.Root__right-sidebar .main-nowPlayingView-section {
+    background: var(--glass-section) !important;
+    position: relative !important;
+    z-index: 3 !important;
+    margin-top: 12px !important;
+}
+
+
+/* =========================================================
+   18. FIXES (round 3)
+   18a. Sticky bars that stay on screen while you scroll
+        (title/play bar + column header) are see-through, so
+        track rows show through the text. Give them glass.
+   18b. Play button in the sticky bar had a square box behind it.
+   ========================================================= */
+
+/* 18a-1. Sticky title/play bar at the top of the main view.
+   Spotify fades its background in as you scroll, so this only
+   appears once you've scrolled. (Extra repeated class names raise
+   specificity above the "strip all backgrounds" rule in section 16.) */
+.Root__main-view .main-topBar-container .main-topBar-background.main-topBar-background.main-topBar-background {
+    background: rgba(12, 40, 33, 0.80) !important;
+    background-image: none !important;
+    -webkit-backdrop-filter: blur(26px) saturate(170%) !important;
+    backdrop-filter: blur(26px) saturate(170%) !important;
+    border-bottom: 1px solid var(--glass-border-soft) !important;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22) !important;
+}
+
+/* 18a-2. Sticky column header (#, Title, Album, Date added, clock). */
+.Root__main-view .main-trackList-trackListHeader {
+    background: rgba(12, 40, 33, 0.80) !important;
+    -webkit-backdrop-filter: blur(26px) saturate(170%) !important;
+    backdrop-filter: blur(26px) saturate(170%) !important;
+    border-bottom: 1px solid var(--glass-border-soft) !important;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.20) !important;
+    z-index: 6 !important;
+}
+
+/* 18b. Play button in the sticky bar: no square box, true circle. */
+.Root__main-view .main-topBar-container button {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
+.Root__main-view .main-topBar-container button[data-testid="play-button"],
+.Root__main-view .main-topBar-container button[aria-label*="Play" i] {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+}
