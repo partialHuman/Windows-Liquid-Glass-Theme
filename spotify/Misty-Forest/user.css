@@ -848,3 +848,68 @@ button[role="menuitemcheckbox"] [class*="Checkbox"] {
     justify-content: center !important;
     overflow: visible !important;
 }
+
+/* =========================================================
+   19. V1.1.0 — INTERACTION & ACCESSIBILITY REFINEMENT
+   Consistent keyboard focus, selected states and motion.
+   Preserves the existing Misty Forest glass appearance.
+   ========================================================= */
+
+/* 19a. Visible keyboard focus for interactive controls. */
+.Root button:focus-visible,
+.Root a:focus-visible,
+.Root [role="button"]:focus-visible,
+.Root input:focus-visible,
+.Root [role="checkbox"]:focus-visible,
+.Root [role="menuitem"]:focus-visible,
+#main button:focus-visible,
+#main a:focus-visible,
+#main [role="button"]:focus-visible {
+    outline: 2px solid rgba(169, 230, 195, 0.95) !important;
+    outline-offset: 3px !important;
+    box-shadow: 0 0 0 4px rgba(169, 230, 195, 0.16) !important;
+}
+
+/* 19b. Keyboard focus should reveal track-row controls. */
+.main-trackList-trackListRow:focus-within {
+    background: rgba(210, 255, 235, 0.12) !important;
+}
+
+/* 19c. Selected track rows receive a restrained glass tint. */
+.main-trackList-trackListRow[aria-selected="true"] {
+    background: rgba(169, 230, 195, 0.13) !important;
+    box-shadow: inset 2px 0 0 rgba(169, 230, 195, 0.75) !important;
+}
+
+/* 19d. Cards respond to keyboard focus as well as pointer hover. */
+.main-card-card:focus-within {
+    background: var(--glass-card-hover) !important;
+    border-color: rgba(225, 250, 235, 0.32) !important;
+}
+
+/* 19e. Consistent tactile feedback for frequently used controls. */
+.main-topBar-container button:active,
+.main-actionBar-ActionBar button:active,
+.main-trackList-trackListRow .main-trackList-rowSectionEnd button:active,
+.main-trackList-trackListRow .main-trackList-rowSectionEnd [role="button"]:active {
+    transform: scale(0.96) !important;
+}
+
+/* 19f. Honour the operating system's reduced-motion preference. */
+@media (prefers-reduced-motion: reduce) {
+    .Root *,
+    #main * {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .main-card-card:hover,
+    .main-topBar-container button:active,
+    .main-actionBar-ActionBar button:active,
+    .main-trackList-trackListRow .main-trackList-rowSectionEnd button:active,
+    .main-trackList-trackListRow .main-trackList-rowSectionEnd [role="button"]:active {
+        transform: none !important;
+    }
+}
